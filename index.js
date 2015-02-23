@@ -13,7 +13,7 @@ if (target[target.length - 1] !== '/') {
 }
 
 var names = fs.readdirSync(target + 'demo');
-var componentName = 'ember-vcl-' + path.basename(target);
+var componentName = 'ember-vcl-' + path.basename(path.resolve(target));
 
 console.log("Found the following demos: ", names);
 console.log("Component name: ", componentName);
