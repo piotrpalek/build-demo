@@ -1,0 +1,27 @@
+{
+  "name": "ember-vcl-demo",
+  "version": "0.1.0",
+  "description": "Demonstration Ember VCL",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "browser-sync": "^1.6.3",
+    "gulp": "^3.8.11",
+    "jspm": "^0.14.0"
+  },
+  "jspm": {
+    "directories": {
+      "baseURL": ".",
+      "lib": "."
+    },
+    "dependencies": {
+      "ember": "github:components/ember@1.11.0-beta.2",
+      "ember-i18n": "github:jamesarosen/ember-i18n@3.0.0-beta.4",
+      "hbs": "github:n-fuse/plugin-ember-hbs@^1.11.0-beta.2",
+      "jquery": "github:components/jquery@^2.0.3"
+    }
+  }
+}
