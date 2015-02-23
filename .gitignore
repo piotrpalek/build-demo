@@ -16,6 +16,8 @@ logs
 results
 coverage
 
+tmp
+
 npm-debug.log
 *node_modules*
 *jspm_packages*
