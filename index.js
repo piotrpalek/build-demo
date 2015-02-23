@@ -1,13 +1,29 @@
 var fs = require('fs-extra');
 var generator = require('./generator');
+var target = process.argv[2]; // first param
+var path = require('path');
+
+if (!target) {
+  console.log('Target is not defined');
+  return;
+}
+
+if (target[target.length - 1] !== '/') {
+  target += '/';
+}
+
+var names = fs.readdirSync(target + 'demo');
+var componentName = 'ember-vcl-' + path.basename(target);
+
+console.log("Found the following demos: ", names);
+console.log("Component name: ", componentName);
 
 fs.removeSync('./tmp');
 fs.ensureDirSync("./tmp");
 fs.copySync('./app_package', './tmp');
 
 var mainjs = fs.readFileSync('./tmp/main.js', 'utf-8');
-var names = ['example1', 'example2'];
-var componentName = 'ember-vcl-navigation';
+
 
 mainjs = mainjs.replace('//CONTROLLERS', generator.controllers(names));
 mainjs = mainjs.replace('//NAMES', generator.names(names));
@@ -25,12 +41,6 @@ var indexhtml = fs.readFileSync('./tmp/index.html', 'utf-8');
 var indexhtml = indexhtml.replace('</body>', generator.containers(names) + '\n</body>');
 fs.writeFileSync('./tmp/index.html', indexhtml);
 
-var target = process.argv[2];
-
-if (target) {
-  fs.copySync('./tmp', target + 'tmp');
-  fs.copySync(target + 'demo/example1', target + 'tmp/example1');
-  fs.copySync(target + 'demo/example2', target + 'tmp/example2');
-} else {
-  console.log('Target is not defined');
-}
+fs.copySync('./tmp', target + 'tmp');
+fs.copySync(target + 'demo/example1', target + 'tmp/example1');
+fs.copySync(target + 'demo/example2', target + 'tmp/example2');

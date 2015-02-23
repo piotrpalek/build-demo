@@ -12,6 +12,7 @@
   },
   "author": "",
   "license": "MIT",
+  "bin": "./index.js",
   "bugs": {
     "url": "https://github.com/ember-vcl/build-demo/issues"
   },
