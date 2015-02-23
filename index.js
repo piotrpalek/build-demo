@@ -42,5 +42,6 @@ var indexhtml = indexhtml.replace('</body>', generator.containers(names) + '\n</
 fs.writeFileSync('./tmp/index.html', indexhtml);
 
 fs.copySync('./tmp', target + 'tmp');
-fs.copySync(target + 'demo/example1', target + 'tmp/example1');
-fs.copySync(target + 'demo/example2', target + 'tmp/example2');
+names.forEach(function (name) {
+  fs.copySync(target + 'demo/' + name, target + 'tmp/' + name);
+});
