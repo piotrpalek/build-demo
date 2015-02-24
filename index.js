@@ -50,6 +50,11 @@ var filesToCopy = [
   'gulpfile.js',
   'config.js!',
   'overrides/ember.json',
+  'fonts/FontAwesome.otf',
+  'fonts/fontawesome-webfont.eot',
+  'fonts/fontawesome-webfont.svg',
+  'fonts/fontawesome-webfont.ttf',
+  'fonts/fontawesome-webfont.woff',
 ];
 
 filesToCopy.forEach(function (f) {
