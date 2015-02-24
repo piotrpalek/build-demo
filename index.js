@@ -2,6 +2,7 @@ var fs = require('fs-extra');
 var generator = require('./generator');
 var target = process.argv[2]; // first param
 var path = require('path');
+var fsn = require('fs');
 
 if (!target) {
   console.log('Target is not defined');
@@ -24,7 +25,6 @@ fs.copySync('./app_package', './tmp');
 
 var mainjs = fs.readFileSync('./tmp/main.js', 'utf-8');
 
-
 mainjs = mainjs.replace('//CONTROLLERS', generator.controllers(names));
 mainjs = mainjs.replace('//NAMES', generator.names(names));
 mainjs = mainjs.replace('//TEMPLATES', generator.templates(names));
@@ -41,7 +41,34 @@ var indexhtml = fs.readFileSync('./tmp/index.html', 'utf-8');
 var indexhtml = indexhtml.replace('</body>', generator.containers(names) + '\n</body>');
 fs.writeFileSync('./tmp/index.html', indexhtml);
 
-fs.copySync('./tmp', target + 'tmp');
+
+var filesToCopy = [
+  'vcl.css',
+  'package.json',
+  'main.js',
+  'index.html',
+  'gulpfile.js',
+  'config.js!',
+  'overrides/ember.json',
+];
+
+filesToCopy.forEach(function (f) {
+  var copy = true;
+  if (f[f.length - 1] === '!') {
+    f = f.substring(0, f.length - 1);
+    if (fsn.existsSync(target + 'tmp/' + f)) {
+      copy = false;
+      console.log('Not overwriting ' + f + ' in the folder ' + componentName + '/tmp' );
+    }
+  }
+  if (copy) {
+    console.log('Copying ' + f + ' to the folder ' + componentName + '/tmp' );
+    fs.copySync('./tmp/' + f, target + 'tmp/' + f);
+  }
+});
+
 names.forEach(function (name) {
   fs.copySync(target + 'demo/' + name, target + 'tmp/' + name);
 });
+
+fs.removeSync('./tmp');
