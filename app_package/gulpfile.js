@@ -10,4 +10,10 @@ gulp.task('watch', function() {
     }
   });
 
+  gulp.watch([
+    './**/*'
+  ], function(file){
+    browserSync.reload(file.path);
+  });
+
 });
