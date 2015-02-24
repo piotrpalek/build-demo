@@ -1,6 +1,6 @@
 {
   "name": "build-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,11 @@
     "type": "git",
     "url": "https://github.com/ember-vcl/build-demo.git"
   },
-  "author": "",
+  "author": {
+    "name": "n-fuse GmbH",
+    "email": "info@n-fuse.de",
+    "url": "www.n-fuse.de"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ember-vcl/build-demo/issues"
