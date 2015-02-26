@@ -19,6 +19,11 @@ function namesArray(names) {
 
 function templates(names) {
   var result = [];
+  result.push('Object.keys(Ember.TEMPLATES).forEach(function (key) { ');
+    names.forEach(function (name) {
+      result.push('Ember.TEMPLATES[\''+name+'/\' + key] = Ember.TEMPLATES[key];');
+    });
+  result.push('});');
   names.forEach(function (name) {
     var templateName = name + 'Template';
     result.push('import ' + templateName + ' from \'' + name + '/application.hbs!\';');
