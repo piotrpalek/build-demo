@@ -5,6 +5,7 @@ gulp.task('watch', function() {
 
   browserSync({
     online: false,
+    port: 3333,
     server: {
       baseDir: ['']
     }
