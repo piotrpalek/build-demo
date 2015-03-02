@@ -73,7 +73,7 @@ filesToCopy.forEach(function (f) {
 });
 
 names.forEach(function (name) {
-  fs.copySync(target + 'demo/' + name, target + 'tmp/' + name);
+  fs.symlinkSync(target + 'demo/' + name, target + 'tmp/' + name);
 });
 
 fs.removeSync('./tmp');
