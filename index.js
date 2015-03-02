@@ -20,7 +20,7 @@ console.log("Found the following demos: ", names);
 console.log("Component name: ", componentName);
 
 fs.removeSync('./tmp');
-fs.ensureDirSync("./tmp");
+fs.ensureDirSync('./tmp');
 fs.copySync('./app_package', './tmp');
 
 var mainjs = fs.readFileSync('./tmp/main.js', 'utf-8');
@@ -72,8 +72,13 @@ filesToCopy.forEach(function (f) {
   }
 });
 
+fs.ensureDirSync(target + 'tmp/');
+
 names.forEach(function (name) {
-  fs.symlinkSync(target + 'demo/' + name, target + 'tmp/' + name);
+  var src = path.resolve(target + 'demo/' + name);
+  var dest = path.resolve(target + 'tmp/' + name);
+  console.log('Creating symlinks: ' + src + ' -> ' + dest);
+  fs.symlinkSync(src, dest);
 });
 
 fs.removeSync('./tmp');
