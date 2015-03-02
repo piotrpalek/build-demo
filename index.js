@@ -13,6 +13,9 @@ if (target[target.length - 1] !== '/') {
   target += '/';
 }
 
+// fs.removeSync(target + 'tmp/');
+fs.ensureDirSync(target + 'tmp/');
+
 var names = fs.readdirSync(target + 'demo');
 var componentName = 'ember-vcl-' + path.basename(path.resolve(target));
 
@@ -30,17 +33,35 @@ mainjs = mainjs.replace('//NAMES', generator.names(names));
 mainjs = mainjs.replace('//TEMPLATES', generator.templates(names));
 mainjs = mainjs.replace('//CURRENT_COMPONENT_IMPORT', generator.component(componentName));
 
+var dependencies = {};
+names.forEach(function (name) {
+  var fname = target + 'demo/' + name + '/package.json';
+  if (fsn.existsSync(fname)) {
+    var file = fs.readJSONSync(fname);
+    var deps = file.jspm.dependencies;
+    Object.keys(deps).forEach(function (key) {
+      dependencies[key] = deps[key];
+    });
+  }
+});
+
+console.log('Additional dependencies', dependencies);
+
+mainjs = mainjs.replace('//OTHER_COMPONENTS', generator.components(dependencies));
+
 fs.writeFileSync('./tmp/main.js', mainjs);
 
 var packagejson = fs.readJSONSync('./tmp/package.json');
 packagejson.jspm.dependencies[componentName] = componentName.replace('ember-vcl-', 'github:ember-vcl/');
-fs.outputJSONSync('./tmp/package.json', packagejson);
 
+Object.keys(dependencies).forEach(function (key) {
+  packagejson.jspm.dependencies[key] = dependencies[key];
+});
+fs.outputJSONSync('./tmp/package.json', packagejson);
 
 var indexhtml = fs.readFileSync('./tmp/index.html', 'utf-8');
 var indexhtml = indexhtml.replace('</body>', generator.containers(names) + '\n</body>');
 fs.writeFileSync('./tmp/index.html', indexhtml);
-
 
 var filesToCopy = [
   'vcl.css',
@@ -57,6 +78,8 @@ var filesToCopy = [
   'fonts/fontawesome-webfont.woff',
 ];
 
+
+
 filesToCopy.forEach(function (f) {
   var copy = true;
   if (f[f.length - 1] === '!') {
@@ -72,13 +95,14 @@ filesToCopy.forEach(function (f) {
   }
 });
 
-fs.ensureDirSync(target + 'tmp/');
-
 names.forEach(function (name) {
   var src = path.resolve(target + 'demo/' + name);
   var dest = path.resolve(target + 'tmp/' + name);
   console.log('Creating symlinks: ' + src + ' -> ' + dest);
-  fs.symlinkSync(src, dest);
+  try {
+    fs.symlinkSync(src, dest);
+  } catch (e) {
+  }
 });
 
 fs.removeSync('./tmp');

@@ -44,10 +44,25 @@ function containers(names) {
   return result.join("\n");
 }
 
+function components(dep) {
+  var result = [];
+  var i = 1;
+  Object.keys(dep).forEach(function (name) {
+    var varName = 'dep' + i;
+    result.push('import ' + varName + ' from \'' + name + '\';\n');
+    result.push('if (' + varName + ' instanceof Array) {');
+    result.push('  ' + varName + '.forEach((i) => Ember.Application.initializer(i));');
+    result.push('}');
+    i++;
+  });
+  return result.join("\n");
+}
+
 module.exports = {
   controllers: controllers,
   names: namesArray,
   templates: templates,
   component: component,
-  containers: containers
+  containers: containers,
+  components: components
 }

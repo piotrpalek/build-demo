@@ -18,6 +18,8 @@ function makeResolver(name) {
 //NAMES
 //CURRENT_COMPONENT_IMPORT
 
+//OTHER_COMPONENTS
+
 if (initializers instanceof Array) {
   initializers.forEach((i) => Ember.Application.initializer(i));
 }
