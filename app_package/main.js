@@ -23,11 +23,12 @@ if (initializers instanceof Array) {
 }
 
 //TEMPLATES
+import EventsMixin from 'gesture-event-support';
 
 names.forEach((name) => {
-  var App = Ember.Application.create({
+  var App = Ember.Application.createWithMixins({
     rootElement: '#' + name,
     Resolver: makeResolver(name)
-  });
+  }, EventsMixin);
   App.ApplicationController = controllers[name];
 });
