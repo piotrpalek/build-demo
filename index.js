@@ -44,6 +44,7 @@ fs.writeFileSync('./tmp/index.html', indexhtml);
 
 var filesToCopy = [
   'vcl.css',
+  'custom.css',
   'package.json',
   'main.js',
   'index.html',
