@@ -31,7 +31,7 @@ npm test
 5. Create two files: `application.js` and `application.hbs`. The `application.js` must export an Ember controller and the application.hbs should contain the application template
 6. Commit the changes and create a release
 
-Now you can build the demo according to the [How to build a demo for a component](#How to build a demo for a component)
+Now you can build the demo according to the [How to build a demo for a component](#how-to-build-a-demo-for-a-component)
 
 ## Demo
 
