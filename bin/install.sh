@@ -8,4 +8,4 @@ npm install             # npm
 jspm init               # init
 jspm install            # install
 
-jspm install ember=github:components/ember@1.11.0-beta.4 -o overrides/ember.json
+jspm install ember=github:components/ember@1.11.0-beta.5 -o overrides/ember.json
