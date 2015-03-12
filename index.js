@@ -74,6 +74,7 @@ var filesToCopy = [
   'index-production.html',
   'gulpfile.js',
   'config.js!',
+  'gh-pages.sh',
   'overrides/ember.json',
   'fonts/FontAwesome.otf',
   'fonts/fontawesome-webfont.eot',
