@@ -59,9 +59,11 @@ Object.keys(dependencies).forEach(function (key) {
 });
 fs.outputJSONSync('./tmp/package.json', packagejson);
 
-var indexhtml = fs.readFileSync('./tmp/index.html', 'utf-8');
-var indexhtml = indexhtml.replace('</body>', generator.containers(names) + '\n</body>');
-fs.writeFileSync('./tmp/index.html', indexhtml);
+['./tmp/index.html', './tmp/index-production.html'].forEach(function (name) {
+  var indexhtml = fs.readFileSync(name, 'utf-8');
+  indexhtml = indexhtml.replace('</body>', generator.containers(names) + '\n</body>');
+  fs.writeFileSync(name, indexhtml);
+})
 
 var filesToCopy = [
   'vcl.css',
@@ -69,8 +71,10 @@ var filesToCopy = [
   'package.json',
   'main.js',
   'index.html',
+  'index-production.html',
   'gulpfile.js',
   'config.js!',
+  'gh-pages.sh',
   'overrides/ember.json',
   'fonts/FontAwesome.otf',
   'fonts/fontawesome-webfont.eot',
