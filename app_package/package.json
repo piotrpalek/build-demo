@@ -12,7 +12,15 @@
     "gulp": "^3.8.11",
     "jspm": "^0.14.0",
     "run-sequence": "^1.0.2",
-    "gulp-rename": "^1.2.0"
+    "gulp-vcl-preprocessor": "git://github.com/VCL/gulp-vcl-preprocessor",
+    "gulp-rename": "^1.2.0",
+    "gulp-autoprefixer": "^1.0.0",
+    "gulp-concat": "^2.4.1",
+    "normalize.css": "^3.0.2",
+    "vcl-default-theme": "git://github.com/vcl/default-theme",
+    "vcl-default-theme-terms": "git://github.com/vcl/default-theme-terms",
+    "vcl-font-awesome": "git://github.com/VCL/font-awesome",
+    "vcl-core-modules": "git://github.com/VCL/core-modules"
   },
   "jspm": {
     "directories": {

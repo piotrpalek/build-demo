@@ -66,7 +66,6 @@ fs.outputJSONSync('./tmp/package.json', packagejson);
 })
 
 var filesToCopy = [
-  'vcl.css',
   'custom.css',
   'package.json',
   'main.js',
@@ -81,7 +80,8 @@ var filesToCopy = [
   'fonts/fontawesome-webfont.svg',
   'fonts/fontawesome-webfont.ttf',
   'fonts/fontawesome-webfont.woff',
-  'fonts/fontawesome-webfont.woff2'
+  'fonts/fontawesome-webfont.woff2',
+  'vcl/index.styl'
 ];
 
 
