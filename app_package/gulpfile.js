@@ -28,7 +28,7 @@ gulp.task('watch', ['vcl'], function() {
   });
 
   gulp.watch([
-    './**/*'
+    './example*/**/*'
   ], function(file){
     browserSync.reload(file.path);
   });
