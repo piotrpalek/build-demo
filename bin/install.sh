@@ -7,5 +7,3 @@ cd "${path}tmp"         # cd to tmp in there
 npm install             # npm
 jspm init               # init
 jspm install            # install
-
-jspm install ember=github:components/ember@1.11.0-beta.5 -o overrides/ember.json
