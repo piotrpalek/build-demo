@@ -1,8 +1,14 @@
 System.config({
-  "transpiler": "6to5",
+  "transpiler": "babel",
+  "babelOptions": {
+    "optional": [
+      "runtime"
+    ]
+  },
   "paths": {
     "*": "*.js",
-    "github:*": "jspm_packages/github/*.js"
+    "github:*": "jspm_packages/github/*.js",
+    "npm:*": "jspm_packages/npm/*.js"
   }
 });
 

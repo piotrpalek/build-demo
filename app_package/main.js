@@ -1,5 +1,4 @@
 import 'jquery';
-import 'ember/ember-template-compiler';
 import Ember from 'ember';
 
 import 'ember-i18n';
