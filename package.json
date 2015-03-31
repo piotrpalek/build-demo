@@ -1,11 +1,11 @@
 {
   "name": "ember-vcl-build-demo",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "./bin/install.sh"
+    "postinstall": "./bin/install.sh"
   },
   "repository": {
     "type": "git",
