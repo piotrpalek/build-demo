@@ -28,9 +28,9 @@
       "lib": "."
     },
     "dependencies": {
-      "ember": "github:components/ember@1.11.0-beta.4",
+      "ember": "github:components/ember@1.12.0-beta.1",
       "ember-i18n": "github:jamesarosen/ember-i18n@3.0.0-beta.4",
-      "hbs": "github:n-fuse/plugin-ember-hbs@^1.11.0-beta.4",
+      "hbs": "github:n-fuse/plugin-ember-hbs@^1.12.0-beta.1",
       "jquery": "github:components/jquery@^2.0.3",
       "gesture-event-support": "github:ember-vcl/gesture-event-support@^0.1.0"
     }
