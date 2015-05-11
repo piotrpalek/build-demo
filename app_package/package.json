@@ -1,6 +1,6 @@
 {
   "name": "ember-vcl-demo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Demonstration App for Ember VCL",
   "homepage": "",
   "repository": {
@@ -16,7 +16,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-autoprefixer": "^1.0.0",
     "gulp-concat": "^2.4.1",
-    "normalize.css": "^3.0.2",
+    "normalize.css": "^3.0.3",
     "vcl-default-theme": "git://github.com/vcl/default-theme",
     "vcl-default-theme-terms": "git://github.com/vcl/default-theme-terms",
     "vcl-font-awesome": "git://github.com/VCL/font-awesome",

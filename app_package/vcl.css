@@ -94,6 +94,7 @@
   /* Default variant */
   /* Emphasized variant */
   /* Transparent variant */
+  /* Emphasized & transparent variant */
   /* Half transparent alternative variant */
   /* Transparent alternative variant */
   /* Danger variant */
@@ -2989,7 +2990,7 @@ th {
 }
 
 html {
-  font-size: 0.85em;
+  font-size: 0.875em;
   line-height: 1.428;
   color: #000000;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -4080,8 +4081,11 @@ li.vclSeparator {
 }
 
 .vclToolbar {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   display: block;
-  position: relative;
   box-sizing: border-box;
   background-color: hsl(0, 0%, 95%);
 }
@@ -4142,12 +4146,12 @@ li.vclSeparator {
   vertical-align: top;
 }
 
-.vclNotification .vclButtonStd.vclTransparent:hover {
+.vclNotification .vclButton.vclTransparent:hover {
   background: none;
   background-color: none;
 }
 
-.vclNotification .vclButtonStd ul li {
+.vclNotification .vclButton ul li {
   list-style: circle outside none;
 }
 
@@ -4158,9 +4162,9 @@ li.vclSeparator {
   font-weight: bold;
 }
 
-.vclNotificationHeader > .vclButtonStd,
-.vclNotificationHeader > .vclButtonStd:hover,
-.vclNotificationHeader > .vclButtonStd:active {
+.vclNotificationHeader > .vclButton,
+.vclNotificationHeader > .vclButton:hover,
+.vclNotificationHeader > .vclButton:active {
   height: 2em;
   line-height: 2em;
   font-size: 0.96em;
@@ -4251,6 +4255,7 @@ li.vclSeparator {
 
 .vclProgressBar .vclProgress.vclSecondary {
   background-color: #c7d9f1;
+  z-index: 2;
 }
 
 .vclProgressBar .vclProgress {
@@ -4355,7 +4360,7 @@ li.vclSeparator {
 }
 
 .vclPagination > li > span,
-.vclPagination > li > .vclButtonStd {
+.vclPagination > li > .vclButton {
   vertical-align: top;
 }
 
@@ -4580,18 +4585,18 @@ li.vclSeparator {
   border-bottom: 0;
 }
 
-.vclTabs ul li .vclButtonStd:hover {
+.vclTabs ul li .vclButton:hover {
   background-color: transparent;
   color: #00ADEF;
 }
 
-.vclTabs ul li .vclButtonStd {
+.vclTabs ul li .vclButton {
   background-color: transparent;
   color: #005F84;
 }
 
-.vclTabs ul .vclSelected .vclButtonStd,
-.vclTabs ul .vclSelected .vclButtonStd:hover {
+.vclTabs ul .vclSelected .vclButton,
+.vclTabs ul .vclSelected .vclButton:hover {
   color: #FFFFFF;
 }
 
@@ -4727,16 +4732,16 @@ li.vclSeparator {
   text-decoration: none;
 }
 
-.vclNavigation .vclHeading > span {
+.vclNavigation .vclNavigationHeading > span {
   display: inline-block;
   font-weight: bold;
   font-size: 0.86em;
 }
 
-.vclNavigation .vclHeading {
+.vclNavigation .vclNavigationHeading {
   color: hsl(0, 0%, 13%);
   background-color: transparent;
-  padding: 0.8em 1em;
+  padding: 0.85em 1em;
 }
 
 .vclNavigation ul li > a .vclText,
@@ -4750,7 +4755,7 @@ li.vclSeparator {
   font-size: 0.96em;
   font-weight: normal;
   margin-right: 0.2em;
-  padding: 0.8em 1em;
+  padding: 0.85em 1em;
 }
 
 .vclNavigation ul li {
@@ -4785,7 +4790,7 @@ li.vclSeparator {
 
 .vclNavigation.vclVertical .vclNavigation li > a,
 .vclNavigation.vclVertical .vclNavigation li > .vclIcogram {
-  font-size: 0.85em;
+  font-size: 0.96em;
   padding-left: 1.5em;
 }
 
@@ -4803,7 +4808,7 @@ li.vclSeparator {
   margin-bottom: 0;
 }
 
-.vclNavigation.vclVertical .vclHeading {
+.vclNavigation.vclVertical .vclNavigationHeading {
   padding-top: 1.3em;
   padding-right: 0.5em;
   padding-bottom: 0.4em;
@@ -4840,30 +4845,48 @@ li.vclSeparator {
 }
 
 .vclProcessNav {
+  font-size: 1em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   overflow: hidden;
-  border-width: 0;
-  border-color: transparent;
-  background-color: transparent;
   margin-bottom: 1.3em;
 }
 
-.vclProcessNav ol li span,
-.vclProcessNav ol li a {
-  display: inline-block;
-  width: 100%;
+.vclProcessNav .vclProcessNavStepNo {
+  margin: 0 0.9em;
+  border: 1px solid;
+  border-color: inherit;
+  border-radius: 50%;
+  height: 1.7em;
+  line-height: 1.85;
+  min-width: 1.7em;
+  overflow: hidden;
   text-align: center;
-  position: relative;
-  z-index: 2;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+.vclProcessNav ol li > a,
+.vclProcessNav ol li > span {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.vclProcessNav ol li:first-of-type {
-  padding-left: 1em;
+.vclProcessNav ol li a {
+  color: #00ADEF;
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
-.vclProcessNav ol li:last-of-type {
-  padding-right: 1em;
+.vclProcessNav ol li:hover a,
+.vclProcessNav ol li:focus a {
+  color: #005F84;
 }
 
 .vclProcessNav ol li.vclSelected {
@@ -4872,43 +4895,13 @@ li.vclSeparator {
   border: 0;
 }
 
-.vclProcessNav ol li.vclSelected:after {
-  background-color: #0888BF;
-}
-
 .vclProcessNav ol li.vclDisabled {
   cursor: default;
   color: hsl(0, 0%, 50%);
 }
 
-.vclProcessNav ol li.vclProcessNavCompleted {
-  background-color: hsl(0, 0%, 88%);
-}
-
-.vclProcessNav ol li:after  {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -1.65em;
-  width: 3em;
-  height: 3em;
-  -webkit-transform: scale(0.7, 1.5) rotate(45deg);
-  -ms-transform: scale(0.7, 1.5) rotate(45deg);
-  transform: scale(0.7, 1.5) rotate(45deg);
-  /* Prevent the arrows from getting buried under the next link */
-  z-index: 1;
-  background-color: hsl(0, 0%, 88%);
-  box-sizing: content-box;
-  border-left-width: 0;
-  border-bottom-width: 0;
-  border-right-width: 2px;
-  border-top-width: 2px;
-  border-style: solid;
-  border-color: #FFFFFF;
-}
-
-.vclProcessNav ol li:last-child:after {
-  content: none;
+.vclProcessNav ol li.vclProcessNavCompletedStep {
+  background-color: hsl(0, 0%, 92%);
 }
 
 .vclProcessNav ol li {
@@ -4916,18 +4909,16 @@ li.vclSeparator {
   outline: none;
   display: block;
   box-sizing: border-box;
-  font-size: 1em;
   padding-top: 0;
   padding-bottom: 0;
   position: relative;
-  background-color: hsl(0, 0%, 88%);
+  background-color: hsl(0, 0%, 92%);
   white-space: nowrap;
   border: 0;
-  padding-left: 2.5em;
-  padding-right: 0;
-  height: 3em;
-  line-height: 3.1em ;
+  min-height: 2.5em;
+  min-width: 2.5em;
   cursor: pointer;
+  text-align: center;
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -4938,9 +4929,45 @@ li.vclSeparator {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+}
+
+.vclProcessNav.vclProcessNavArrows ol li:after  {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -1.65em;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-transform: scale(0.7, 1.5) rotate(45deg);
+  -ms-transform: scale(0.7, 1.5) rotate(45deg);
+  transform: scale(0.7, 1.5) rotate(45deg);
+  /* Prevent the arrows from getting buried under the next link */
+  z-index: 1;
+  background-color: hsl(0, 0%, 92%);
+  box-sizing: content-box;
+  border-left-width: 0;
+  border-bottom-width: 0;
+  border-right-width: 2px;
+  border-top-width: 2px;
+  border-style: solid;
+  border-color: #FFFFFF;
+}
+
+.vclProcessNav.vclProcessNavArrows ol li:last-child:after {
+  content: none;
+}
+
+.vclProcessNav.vclProcessNavArrows ol li.vclSelected:after {
+  background-color: #0888BF;
+}
+
+.vclProcessNav.vclProcessNavArrows ol li.vclProcessNavCompletedStep:after {
+  background-color: hsl(0, 0%, 92%);
+}
+
+.vclProcessNav.vclProcessNavArrows ol li {
+  padding-left: 2.5em;
+  padding-right: 0;
 }
 
 .vclResponsiveImageContainer {
@@ -5399,7 +5426,7 @@ select:focus,
 textarea:focus,
 input:focus,
 .vclInput:focus {
-  outline: 0;
+  outline: none;
 }
 
 /* Show an outline for elements which cannot be highlighted by border colors */
@@ -5577,7 +5604,7 @@ input.vclSelected:focus {
   margin-right: 0.3em;
 }
 
-.vclToken .vclButtonStd {
+.vclToken .vclButton {
   line-height: 1;
   padding: 0;
   vertical-align: top;
@@ -5806,7 +5833,7 @@ input.vclSelected:focus {
   right: 0;
 }
 
-.vclInputGroupEmb > button.vclButtonStd[disabled] {
+.vclInputGroupEmb > button.vclButton[disabled] {
   display: none;
 }
 
@@ -5824,8 +5851,8 @@ input.vclSelected:focus {
   padding-bottom: 0;
 }
 
-.vclButtonStd,
-.vclButtonStd[disabled] {
+.vclButton,
+.vclButton[disabled] {
   border-width: 0;
   border-color: transparent;
   border-style: solid;
@@ -5849,65 +5876,65 @@ input.vclSelected:focus {
   *zoom: 1;
 }
 
-.vclButtonStd:before,
-.vclButtonStd:after,
-.vclButtonStd[disabled]:before,
-.vclButtonStd[disabled]:after {
+.vclButton:before,
+.vclButton:after,
+.vclButton[disabled]:before,
+.vclButton[disabled]:after {
   content: " ";
   display: table;
 }
 
-.vclButtonStd:after,
-.vclButtonStd[disabled]:after {
+.vclButton:after,
+.vclButton[disabled]:after {
   clear: both;
 }
 
-.vclButtonStd > span,
-.vclButtonStd > .vclIcogram {
+.vclButton > span,
+.vclButton > .vclIcogram {
   font-size: 0.95em;
 }
 
-.vclButtonStd.vclOverflowEllipsis > span,
-.vclButtonStd > .vclIcogram > .vclText {
+.vclButton.vclOverflowEllipsis > span,
+.vclButton > .vclIcogram > .vclText {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   display: inline-block;
 }
 
-a.vclButtonStd,
-a.vclButtonStd[disabled] {
+a.vclButton,
+a.vclButton[disabled] {
   line-height: 2.5em;
 }
 
-a.vclButtonStd> span,
-a.vclButtonStd[disabled]> span {
+a.vclButton> span,
+a.vclButton[disabled]> span {
   line-height: inherit;
 }
 
-span.vclButtonStd,
-span.vclButtonStd[disabled] {
+span.vclButton,
+span.vclButton[disabled] {
   display: inline-block;
   line-height: 1;
 }
 
-.vclButtonStd:focus {
+.vclButton:focus {
   outline: none;
 }
 
-.vclButtonStd:active {
+.vclButton:active {
   outline: 0;
 }
 
-.vclButtonStd.vclSquare {
+.vclButton.vclSquare {
   min-width: 2.5em;
   padding-right: 0;
   padding-left: 0;
   text-align: center;
 }
 
-.vclButtonStd.vclDisabled,
-.vclButtonStd[disabled] {
+.vclButton.vclDisabled,
+.vclButton[disabled] {
   pointer-events: none;
   opacity: .75;
   cursor: default;
@@ -5915,167 +5942,190 @@ span.vclButtonStd[disabled] {
 
 /* Standard variant */
 
-.vclButtonStd {
+.vclButton {
   border-color: transparent;
   background-color: hsl(0, 0%, 50%);
   color: #FFFFFF;
 }
 
-.vclButtonStd.vclSelected {
+.vclButton.vclSelected {
   color: #FFFFFF;
   background-color: #005F84;
 }
 
-.vclButtonStd:hover,
-.vclButtonStd:focus,
-.vclButtonStd:active,
-.vclButtonStd.vclHover,
-.vclButtonStd.vclPressed,
-.vclButtonStd.vclFocus,
-.vclButtonStd.vclActive {
+.vclButton:hover,
+.vclButton:focus,
+.vclButton:active,
+.vclButton.vclHover,
+.vclButton.vclPressed,
+.vclButton.vclFocus,
+.vclButton.vclActive {
   background-color: hsl(0, 0%, 45%);
   color: #FFFFFF;
 }
 
-.vclButtonStd.vclDisabled,
-.vclButtonStd[disabled] {
+.vclButton.vclDisabled,
+.vclButton[disabled] {
   color: hsl(0, 0%, 88%);
 }
 
 /* Emphasized variant */
 
-.vclButtonStd.vclEmphasized {
+.vclButton.vclEmphasized {
   border-color: hsl(0, 0%, 13%);
   background-color: #00ADEF;
-  color: hsl(0, 0%, 95%);
+  color: #FFFFFF;
 }
 
-.vclButtonStd.vclEmphasized:hover,
-.vclButtonStd.vclEmphasized:focus,
-.vclButtonStd.vclEmphasized:active,
-.vclButtonStd.vclEmphasized.vclHover,
-.vclButtonStd.vclEmphasized.vclPressed,
-.vclButtonStd.vclEmphasized.vclFocus,
-.vclButtonStd.vclEmphasized.vclActive {
+.vclButton.vclEmphasized:hover,
+.vclButton.vclEmphasized:focus,
+.vclButton.vclEmphasized:active,
+.vclButton.vclEmphasized.vclHover,
+.vclButton.vclEmphasized.vclPressed,
+.vclButton.vclEmphasized.vclFocus,
+.vclButton.vclEmphasized.vclActive {
   background-color: #0888BF;
   color: #FFFFFF;
 }
 
-/* Transparent variant */
+/* Emphasized & transparent variant */
 
-.vclButtonStd.vclTransparent {
-  color: hsl(0, 0%, 50%);
+.vclButton.vclEmphasizedTransparent {
+  color: #00ADEF;
   background: none;
 }
 
-.vclButtonStd.vclTransparent.vclDisabled,
-.vclButtonStd.vclTransparent[disabled] {
+.vclButton.vclEmphasizedTransparent.vclDisabled,
+.vclButton.vclEmphasizedTransparent[disabled] {
+  color: hsl(0, 0%, 88%);
+}
+
+.vclButton.vclEmphasizedTransparent:hover,
+.vclButton.vclEmphasizedTransparent:focus,
+.vclButton.vclEmphasizedTransparent:active,
+.vclButton.vclEmphasizedTransparent.vclHover,
+.vclButton.vclEmphasizedTransparent.vclPressed,
+.vclButton.vclEmphasizedTransparent.vclFocus,
+.vclButton.vclEmphasizedTransparent.vclActive {
+  background: none;
+  color: #005F84;
+}
+
+/* Transparent variant */
+
+.vclButton.vclTransparent {
+  color: hsl(0, 0%, 45%);
+  background: none;
+}
+
+.vclButton.vclTransparent.vclDisabled,
+.vclButton.vclTransparent[disabled] {
   color: hsl(0, 0%, 63%);
 }
 
-.vclButtonStd.vclTransparent:hover,
-.vclButtonStd.vclTransparent:focus,
-.vclButtonStd.vclTransparent:active,
-.vclButtonStd.vclTransparent.vclHover,
-.vclButtonStd.vclTransparent.vclPressed,
-.vclButtonStd.vclTransparent.vclFocus,
-.vclButtonStd.vclTransparent.vclActive {
+.vclButton.vclTransparent:hover,
+.vclButton.vclTransparent:focus,
+.vclButton.vclTransparent:active,
+.vclButton.vclTransparent.vclHover,
+.vclButton.vclTransparent.vclPressed,
+.vclButton.vclTransparent.vclFocus,
+.vclButton.vclTransparent.vclActive {
   background: none;
   color: #000000;
 }
 
 /* Transparent alternative variant */
 
-.vclButtonStd.vclTransparentAlt {
+.vclButton.vclTransparentAlt {
   background: none;
   background-color: transparent;
   color: hsl(0, 0%, 88%);
 }
 
-.vclButtonStd.vclTransparentAlt.vclDisabled,
-.vclButtonStd.vclTransparentAlt[disabled] {
+.vclButton.vclTransparentAlt.vclDisabled,
+.vclButton.vclTransparentAlt[disabled] {
   color: hsl(0, 0%, 63%);
 }
 
-.vclButtonStd.vclTransparentAlt:hover,
-.vclButtonStd.vclTransparentAlt:focus,
-.vclButtonStd.vclTransparentAlt:active,
-.vclButtonStd.vclTransparentAlt.vclHover,
-.vclButtonStd.vclTransparentAlt.vclPressed,
-.vclButtonStd.vclTransparentAlt.vclFocus,
-.vclButtonStd.vclTransparentAlt.vclActive {
+.vclButton.vclTransparentAlt:hover,
+.vclButton.vclTransparentAlt:focus,
+.vclButton.vclTransparentAlt:active,
+.vclButton.vclTransparentAlt.vclHover,
+.vclButton.vclTransparentAlt.vclPressed,
+.vclButton.vclTransparentAlt.vclFocus,
+.vclButton.vclTransparentAlt.vclActive {
   background: none;
   color: #FFFFFF;
 }
 
 /* Half transparent variant */
 
-.vclButtonStd.vclHalfTransp {
+.vclButton.vclHalfTransparent {
   background: none;
   background-color: transparent;
   color: inherit;
 }
 
-.vclButtonStd.vclHalfTransp.vclDisabled,
-.vclButtonStd.vclHalfTransp[disabled] {
+.vclButton.vclHalfTransparent.vclDisabled,
+.vclButton.vclHalfTransparent[disabled] {
   color: hsl(0, 0%, 63%);
 }
 
-.vclButtonStd.vclHalfTransp:hover,
-.vclButtonStd.vclHalfTransp:focus,
-.vclButtonStd.vclHalfTransp:active,
-.vclButtonStd.vclHalfTransp.vclHover,
-.vclButtonStd.vclHalfTransp.vclPressed,
-.vclButtonStd.vclHalfTransp.vclFocus,
-.vclButtonStd.vclHalfTransp.vclActive {
+.vclButton.vclHalfTransparent:hover,
+.vclButton.vclHalfTransparent:focus,
+.vclButton.vclHalfTransparent:active,
+.vclButton.vclHalfTransparent.vclHover,
+.vclButton.vclHalfTransparent.vclPressed,
+.vclButton.vclHalfTransparent.vclFocus,
+.vclButton.vclHalfTransparent.vclActive {
   background-color: hsl(0, 0%, 92%);
   color: inherit;
 }
 
 /* Danger variant */
 
-.vclButtonStd.vclDanger {
-  color: #a94442;
-  background-color: #f2dede;
-}
-
-.vclButtonStd.vclDanger:hover,
-.vclButtonStd.vclDanger:focus,
-.vclButtonStd.vclDanger:active,
-.vclButtonStd.vclDanger.vclHover,
-.vclButtonStd.vclDanger.vclPressed,
-.vclButtonStd.vclDanger.vclFocus,
-.vclButtonStd.vclDanger.vclActive {
-  color: #f2dede;
+.vclButton.vclDanger {
+  color: #FFFFFF;
   background-color: #d9534f;
 }
 
-.vclButtonStd.vclDanger.vclDisabled,
-.vclButtonStd.vclDanger[disabled] {
-  color: #d9534f;
+.vclButton.vclDanger:hover,
+.vclButton.vclDanger:focus,
+.vclButton.vclDanger:active,
+.vclButton.vclDanger.vclHover,
+.vclButton.vclDanger.vclPressed,
+.vclButton.vclDanger.vclFocus,
+.vclButton.vclDanger.vclActive {
+  color: #FFFFFF;
+  background-color: #a94442;
+}
+
+.vclButton.vclDanger.vclDisabled,
+.vclButton.vclDanger[disabled] {
+  color: hsl(0, 0%, 63%);
 }
 
 /* Suggestive variant */
 
-.vclButtonStd.vclSuggestive {
-  color: #3c763d;
-  background-color: #dff0d8;
-}
-
-.vclButtonStd.vclSuggestive:hover,
-.vclButtonStd.vclSuggestive:focus,
-.vclButtonStd.vclSuggestive:active,
-.vclButtonStd.vclSuggestive.vclHover,
-.vclButtonStd.vclSuggestive.vclPressed,
-.vclButtonStd.vclSuggestive.vclFocus,
-.vclButtonStd.vclSuggestive.vclActive {
-  color: #dff0d8;
+.vclButton.vclSuggestive {
+  color: #FFFFFF;
   background-color: #5cb85c;
 }
 
-.vclButtonStd.vclSuggestive.vclDisabled,
-.vclButtonStd.vclSuggestive[disabled] {
-  color: #5cb85c;
+.vclButton.vclSuggestive:hover,
+.vclButton.vclSuggestive:focus,
+.vclButton.vclSuggestive:active,
+.vclButton.vclSuggestive.vclHover,
+.vclButton.vclSuggestive.vclPressed,
+.vclButton.vclSuggestive.vclFocus,
+.vclButton.vclSuggestive.vclActive {
+  color: #FFFFFF;
+  background-color: #3c763d;
+}
+
+.vclButton.vclSuggestive.vclDisabled,
+.vclButton.vclSuggestive[disabled] {
+  color: hsl(0, 0%, 88%);
 }
 
 .vclButtonGroup {
@@ -6092,18 +6142,18 @@ span.vclButtonStd[disabled] {
   clear: both;
 }
 
-.vclButtonGroup .vclButtonStd:first-child {
+.vclButtonGroup .vclButton:first-child {
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
   margin-left: 0;
 }
 
-.vclButtonGroup .vclButtonStd:last-child {
+.vclButtonGroup .vclButton:last-child {
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.vclButtonGroup .vclButtonStd {
+.vclButtonGroup .vclButton {
   vertical-align: top;
   border-radius: 0 0 0 0;
   float: left;
@@ -6113,29 +6163,29 @@ span.vclButtonStd[disabled] {
   margin-left: 0.5em;
 }
 
-.vclButtonGroup.vclVertical> .vclButtonStd:first-child {
+.vclButtonGroup.vclVertical> .vclButton:first-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.vclButtonGroup.vclVertical> .vclButtonStd:last-child {
+.vclButtonGroup.vclVertical> .vclButton:last-child {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   border-top-right-radius: 0;
 }
 
-.vclButtonGroup.vclVertical> .vclButtonStd {
+.vclButtonGroup.vclVertical> .vclButton {
   float: none;
   display: block;
   width: 100%;
 }
 
-.vclSpinner .vclButtonGroup.vclVertical .vclButtonStd {
+.vclSpinner .vclButtonGroup.vclVertical .vclButton {
   height: calc(2.5em / 2);
 }
 
-.vclSpinner .vclButtonGroup.vclVertical > .vclButtonStd {
+.vclSpinner .vclButtonGroup.vclVertical > .vclButton {
   border-radius: 0;
 }
 
@@ -6411,6 +6461,10 @@ span.vclButtonStd[disabled] {
 }
 
 .vclDropdown {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   box-sizing: border-box;
   display: none;
   position: absolute;
@@ -6736,8 +6790,8 @@ table.vclTable input[type="file"] {
   margin-bottom: 0;
 }
 
-.vclTable .vclSortableCol.vclSortAsc button.vclButtonStd i,
-.vclTable .vclSortableCol.vclSortDesc button.vclButtonStd i {
+.vclTable .vclSortableCol.vclSortAsc button.vclButton i,
+.vclTable .vclSortableCol.vclSortDesc button.vclButton i {
   color: #00ADEF;
 }
 
@@ -7015,6 +7069,13 @@ table.vclTable input[type="file"] {
   background-color: transparent;
   transition: color .25s linear, background-color .25s ease-in-out, border-color .25s ease-in-out;
   min-height: 2.5em;
+}
+
+.vclCalendar.vclCalInput {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .vclCalendar.vclCalInput .vclCalItem:hover {
