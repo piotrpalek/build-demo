@@ -3154,14 +3154,16 @@ a.vclDisabled {
   cursor: default;
 }
 
-a.vclContentLink :before {
-  font-family: FontAwesome;
-  content: "\f105  ";
+a.vclContentLink > .vclIcogram .vclIcon:first-child {
+  margin: 0 0.15em 0 0;
 }
 
-a.vclContentLink  > i {
-  padding-left: 0.25em;
-  padding-right: 0.25em;
+a.vclContentLink > .vclIcogram .vclIcon:last-child {
+  margin: 0 0 0 0.15em;
+}
+
+a.vclContentLink > .vclIcogram {
+  display: inline-block;
 }
 
 .vclDisabled,
@@ -4890,6 +4892,7 @@ li.vclSeparator {
 }
 
 .vclProcessNav ol li.vclSelected {
+  cursor: default;
   color: #FFFFFF;
   background-color: #0888BF;
   border: 0;
@@ -4929,6 +4932,10 @@ li.vclSeparator {
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+.vclProcessNav.vclProcessNavArrows ol li:first-child {
+  padding-left: 1em;
 }
 
 .vclProcessNav.vclProcessNavArrows ol li:after  {
@@ -5408,7 +5415,6 @@ input,
   padding-right: 0.2em;
   padding-bottom: 0;
   padding-left: 0.2em;
-  font-size: 1.0em;
   vertical-align: middle;
   margin-bottom: 1.0em;
 }
@@ -5606,10 +5612,9 @@ input.vclSelected:focus {
 
 .vclToken .vclButton {
   line-height: 1;
-  padding: 0;
+  padding: 0 0.3em;
   vertical-align: top;
   height: 100%;
-  width: 1.2em;
   font-size: 0.8em;
   color: hsl(0, 0%, 63%);
 }
@@ -5923,7 +5928,7 @@ span.vclButton[disabled] {
 }
 
 .vclButton:active {
-  outline: 0;
+  outline: none;
 }
 
 .vclButton.vclSquare {
@@ -6584,21 +6589,13 @@ span.vclButton[disabled] {
 
 .vclDatePicker {
   box-sizing: border-box;
-  display: none;
-  position: absolute;
-  z-index: 60;
-  min-width: 13em;
+  min-width: 18em;
   margin: 0;
   padding: 0;
-  list-style: none;
   border-color: transparent;
   border-width: 1px;
   border-style: solid;
   background-color: transparent;
-}
-
-.vclDatePicker.vclOpen {
-  display: block;
 }
 
 table {
@@ -7119,8 +7116,6 @@ table.vclTable input[type="file"] {
   background-color: #f2dede;
 }
 
-/* Busy indicator container */
-
 .vclBusyIndicator {
   margin-left: auto;
   margin-right: auto;
@@ -7154,13 +7149,13 @@ table.vclTable input[type="file"] {
 }
 
 .vclBusy-busyIndCircular {
-  background: url('../imgs/vclBusyIndicatorCircular.svg');
+  background-image: url('../imgs/vclBusyIndicatorCircular.svg');
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .vclBusy-busyIndStraight {
-  background: url('../imgs/vclBusyIndicatorStraight.svg');
+  background-image: url('../imgs/vclBusyIndicatorStraight.svg');
   background-position: center;
   background-repeat: no-repeat;
 }
