@@ -6211,7 +6211,7 @@ span.vclButton[disabled] {
 }
 
 .vclSlider:active {
-  outline: 0;
+  outline: none;
 }
 
 .vclSlider .vclSliderRail .vclSliderScale {
