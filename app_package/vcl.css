@@ -53,7 +53,7 @@
      ---------- */
   /* Tab Navigation
      -------------- */
-  /* Breadcrump Navigation
+  /* Breadcrumb Navigation
      --------------------- */
   /* Navigation
      ----------- */
@@ -71,6 +71,8 @@
      --------- */
   /* Go-to-top
      --------- */
+  /* Divider
+     ------- */
   /* Panel
      ----- */
   /* Toolbar
@@ -87,8 +89,6 @@
      ------------------ */
   /* Application Footer
      ------------------ */
-  /* Fav-Icon
-     -------- */
   /* Button
      ------ */
   /* Default variant */
@@ -3375,6 +3375,10 @@ hr {
   width: 33.3333%;
 }
 
+.vclGridSpan-45p {
+  width: 45%;
+}
+
 .vclGridSpan-50p {
   width: 50%;
 }
@@ -3833,9 +3837,11 @@ body [fullbleed] {
   padding: 2em 0;
 }
 
-.vclFavIcon {
-  width: 16px;
-  background: url("https://cdn.rawgit.com/vcl/gfx/master/vcl_logo_square-bw.svg") no-repeat center;
+.vclLogo {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://cdn.rawgit.com/vcl/gfx/master/vcl_logo_square-bw.svg');
 }
 
 .vclIcon {
@@ -3850,7 +3856,7 @@ body [fullbleed] {
 .vclIcogram {
   white-space: nowrap;
   position: relative;
-  display: block;
+  display: inline-block;
 }
 
 .vclIcogram .vclIcon {
@@ -4021,6 +4027,96 @@ li.vclSeparator {
   background-color: #d9534f;
 }
 
+.vclDivider {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  height: 0;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: inherit;
+  margin: 1rem 0;
+}
+
+.vclDivider.vclDividerHeading {
+  text-transform: none;
+}
+
+.vclDivider:not(.vclDividerHeading) {
+  font-size: 0.85em;
+}
+
+.vclDivider:not(.vclDividerVertical):not(.vclDividerHorizontal) {
+  border-bottom: 1px solid hsl(0, 0%, 75%);
+}
+
+.vclDivider.vclDividerHorizontal::before {
+  margin-left: calc(-50% - 1em);
+}
+
+.vclDivider.vclDividerHorizontal::after,
+.vclDivider.vclDividerHorizontal::before {
+  position: absolute;
+  content: "";
+  z-index: 3;
+  width: 50%;
+  top: 50%;
+  height: 0px;
+  border-top: 1px solid hsl(0, 0%, 75%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) ;
+}
+
+.vclDivider.vclDividerHorizontal::after {
+  margin-left: 1em;
+}
+
+.vclDivider.vclDividerHorizontal {
+  position: relative;
+  height: auto;
+  overflow: hidden;
+  line-height: 1;
+  text-align: center;
+}
+
+.vclDivider.vclDividerVertical::before {
+  top: -100%;
+}
+
+.vclDivider.vclDividerVertical::after,
+.vclDivider.vclDividerVertical::before {
+  position: absolute;
+  left: 50%;
+  content: "";
+  z-index: 3;
+  border-left: 1px solid hsl(0, 0%, 75%);
+  border-right: 1px solid rgba(255, 255, 255, 0.2) ;
+  width: 0px;
+  height: calc(100% - 1em);
+}
+
+.vclDivider.vclDividerVertical::after {
+  top: auto;
+  bottom: 0;
+}
+
+.vclDivider.vclDividerVertical {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  line-height: 0;
+  text-align: center;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 50%;
+  top: 50%;
+}
+
 .vclContainer {
   width: 100%;
   box-sizing: border-box;
@@ -4042,7 +4138,7 @@ li.vclSeparator {
   background-color: transparent;
   border-style: solid;
   border-width: 0 0 2px 0;
-  border-color: hsl(0, 0%, 45%);
+  border-color: hsl(0, 0%, 50%);
 }
 
 .vclPanelFooter {
@@ -4067,7 +4163,7 @@ li.vclSeparator {
 .vclPanelBody {
   border-style: solid;
   border-width: 1px;
-  border-color: hsl(0, 0%, 45%);
+  border-color: hsl(0, 0%, 50%);
 }
 
 .vclPanelBody > *:first-child {
@@ -4680,37 +4776,37 @@ li.vclSeparator {
   border: 1px solid transparent;
 }
 
-.vclBreadcrumpNav ol li a {
+.vclBreadcrumbNav ol li a {
   color: #0888BF;
 }
 
-.vclBreadcrumpNav ol li.vclSelected a {
+.vclBreadcrumbNav ol li.vclSelected a {
   color: #00ADEF;
 }
 
-.vclBreadcrumpNav ol li.vclSelected {
+.vclBreadcrumbNav ol li.vclSelected {
   cursor: default;
   background: transparent;
   border: 0;
 }
 
-.vclBreadcrumpNav ol li a .vclIcon {
+.vclBreadcrumbNav ol li a .vclIcon {
   padding-left: 0.4em;
   padding-right: 0.2em;
 }
 
-.vclBreadcrumpNav ol li a {
+.vclBreadcrumbNav ol li a {
   padding-right: 0.1em;
   display: inline-block;
 }
 
-.vclBreadcrumpNav ol li {
+.vclBreadcrumbNav ol li {
   float: left;
   font-weight: bold;
   font-size: 0.99em;
 }
 
-.vclBreadcrumpNav ol {
+.vclBreadcrumbNav ol {
   list-style: none;
   list-style-type: none;
   overflow: hidden;
@@ -5127,23 +5223,18 @@ figure figcaption {
 }
 
 .vclPopOver {
-  display: block;
   position: absolute;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 0.25em;
   text-decoration: none;
   font-weight: normal;
-  text-align: left;
-  background: none;
-  border-color: transparent;
-  color: #000000;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.15);
   background-color: #FFFFFF;
-  box-shadow: 0px 0px 4px hsl(0, 0%, 50%);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+  color: #000000;
   z-index: 5;
-}
-
-.vclPopOver .vclPopoverContent {
-  padding: 0.8em 1em;
 }
 
 .vclPopOver.vclContentPadding {
@@ -5365,13 +5456,15 @@ legend + .vclInputControlGroup {
   -webkit-margin-top-collapse: separate;
 }
 
-fieldset {
+fieldset,
+.vclFieldset {
   padding: 1em;
   border-radius: 4px;
-  border: 1px solid hsl(0, 0%, 63%);
+  border: 1px solid hsl(0, 0%, 75%);
 }
 
-fieldset legend {
+fieldset legend,
+.vclFieldset legend {
   padding-left: 0.5em;
   padding-right: 0.5em;
   font-weight: bold;
@@ -5417,6 +5510,11 @@ input,
   padding-left: 0.2em;
   vertical-align: middle;
   margin-bottom: 1.0em;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
 }
 
 div.vclInput {
@@ -5965,7 +6063,7 @@ span.vclButton[disabled] {
 .vclButton.vclPressed,
 .vclButton.vclFocus,
 .vclButton.vclActive {
-  background-color: hsl(0, 0%, 45%);
+  background-color: hsl(0, 0%, 25%);
   color: #FFFFFF;
 }
 
@@ -5977,7 +6075,7 @@ span.vclButton[disabled] {
 /* Emphasized variant */
 
 .vclButton.vclEmphasized {
-  border-color: hsl(0, 0%, 13%);
+  border-color: transparent;
   background-color: #00ADEF;
   color: #FFFFFF;
 }
@@ -6480,7 +6578,7 @@ span.vclButton[disabled] {
   padding: 0;
   list-style: none;
   text-align: left;
-  border-color: #000000;
+  border-color: rgba(0, 0, 0, 0.3);
   border-width: 1px;
   border-style: solid;
   background-color: #FFFFFF;
@@ -6506,7 +6604,7 @@ span.vclButton[disabled] {
 }
 
 .vclDropdown li:hover {
-  background-color: #000000;
+  background-color: hsl(0, 0%, 45%);
 }
 
 .vclDropdown li.vclSelected > a,
@@ -6549,7 +6647,9 @@ span.vclButton[disabled] {
   cursor: default;
 }
 
-.vclDropdown li.vclSeparator .vclSeparator--inner {
+.vclDropdown li > .vclSeparator {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   border-bottom-color: hsl(0, 0%, 63%);
   border-bottom-width: 1px;
   border-bottom-style: solid;

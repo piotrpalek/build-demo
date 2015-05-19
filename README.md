@@ -39,4 +39,4 @@ Now you can build the demo according to the [How to build a demo for a component
 
 ## License
 
-[MIT license](LICENSE)
+[MIT license](LICENSE.txt)
