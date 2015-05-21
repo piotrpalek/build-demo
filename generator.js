@@ -58,11 +58,26 @@ function components(dep) {
   return result.join("\n");
 }
 
+function routers(names, namesWithRouter) {
+  var result = [];
+  result.push('var routers = {};');
+  names.filter(function(name) {
+      return  namesWithRouter.indexOf(name) !== -1;
+    })
+    .forEach(function (name) {
+      var routerName = name;
+      result.push('import ' + routerName + ' from \'' + name + '/router\';');
+      result.push('routers.'+routerName+' = ' + routerName + ';');
+    });
+  return result.join("\n");
+}
+
 module.exports = {
   controllers: controllers,
   names: namesArray,
   templates: templates,
   component: component,
   containers: containers,
-  components: components
+  components: components,
+  routers: routers
 }

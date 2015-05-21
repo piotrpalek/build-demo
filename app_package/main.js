@@ -26,10 +26,14 @@ if (initializers instanceof Array) {
 //TEMPLATES
 import EventsMixin from 'gesture-event-support';
 
+//ROUTERS
 names.forEach((name) => {
   var App = Ember.Application.createWithMixins({
     rootElement: '#' + name,
     Resolver: makeResolver(name)
   }, EventsMixin);
   App.ApplicationController = controllers[name];
+  if (routers[name]) {
+    App.Router.map(routers[name]);
+  }
 });

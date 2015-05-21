@@ -34,6 +34,7 @@ mainjs = mainjs.replace('//TEMPLATES', generator.templates(names));
 mainjs = mainjs.replace('//CURRENT_COMPONENT_IMPORT', generator.component(componentName));
 
 var dependencies = {};
+var namesWithRouter = [];
 names.forEach(function (name) {
   var fname = target + 'demo/' + name + '/package.json';
   if (fsn.existsSync(fname)) {
@@ -43,9 +44,16 @@ names.forEach(function (name) {
       dependencies[key] = deps[key];
     });
   }
+
+  var routerName = target + 'demo/' + name + '/router.js';
+  if (fsn.existsSync(routerName)) {
+    namesWithRouter.push(name);
+  }
 });
 
 console.log('Additional dependencies', dependencies);
+
+mainjs = mainjs.replace('//ROUTERS', generator.routers(names, namesWithRouter));
 
 mainjs = mainjs.replace('//OTHER_COMPONENTS', generator.components(dependencies));
 
@@ -82,8 +90,6 @@ var filesToCopy = [
   'fonts/fontawesome-webfont.woff2',
   'vcl/index.styl'
 ];
-
-
 
 filesToCopy.forEach(function (f) {
   var copy = true;
