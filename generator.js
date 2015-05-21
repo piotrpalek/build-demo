@@ -65,9 +65,9 @@ function routers(names, namesWithRouter) {
       return  namesWithRouter.indexOf(name) !== -1;
     })
     .forEach(function (name) {
-      var routerName = name;
+      var routerName = 'router' + name;
       result.push('import ' + routerName + ' from \'' + name + '/router\';');
-      result.push('routers.'+routerName+' = ' + routerName + ';');
+      result.push('routers.'+name+' = ' + routerName + ';');
     });
   return result.join("\n");
 }
