@@ -11,17 +11,23 @@
     "type": "git",
     "url": "https://github.com/ember-vcl/build-demo.git"
   },
-  "author": {
-    "name": "n-fuse GmbH",
-    "email": "info@n-fuse.de",
-    "url": "www.n-fuse.de"
+  "homepage": "https://github.com/ember-vcl/doc",
+  "license": {
+    "type": "MIT"
   },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ember-vcl/build-demo/issues"
-  },
-  "homepage": "https://github.com/ember-vcl/build-demo",
+  "author": "The Ember VCL authors",
+  "contributors": [
+    {
+      "name": "Thomas Hoppe",
+      "email": "thomas.hoppe@n-fuse.de"
+    }
+  ],
   "dependencies": {
     "fs-extra": "^0.16.3"
-  }
+  },
+  "keywords": [
+    "web-component",
+    "ember",
+    "VCL"
+  ]
 }
