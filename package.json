@@ -12,9 +12,7 @@
     "url": "https://github.com/ember-vcl/build-demo.git"
   },
   "homepage": "https://github.com/ember-vcl/doc",
-  "license": {
-    "type": "MIT"
-  },
+  "license": "MIT",
   "author": "The Ember VCL authors",
   "contributors": [
     {
