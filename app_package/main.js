@@ -28,7 +28,6 @@ if (initializers instanceof Array) {
     }
   });
 }
-}
 
 //TEMPLATES
 import EventsMixin from 'gesture-event-support';
