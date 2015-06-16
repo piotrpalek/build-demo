@@ -20,7 +20,14 @@ function makeResolver(name) {
 //OTHER_COMPONENTS
 
 if (initializers instanceof Array) {
-  initializers.forEach((i) => Ember.Application.initializer(i));
+  initializers.forEach((i) => {
+    if (i.type === 'instance') {
+      Ember.Application.instanceInitializer(i);
+    } else {
+      Ember.Application.initializer(i);
+    }
+  });
+}
 }
 
 //TEMPLATES
