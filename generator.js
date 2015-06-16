@@ -51,7 +51,12 @@ function components(dep) {
     var varName = 'dep' + i;
     result.push('import ' + varName + ' from \'' + name + '\';\n');
     result.push('if (' + varName + ' instanceof Array) {');
-    result.push('  ' + varName + '.forEach((i) => Ember.Application.initializer(i));');
+    result.push('  ' + varName + '.forEach((i) => { ');
+    result.push('     if (i.type == "instance") {');
+    result.push('       ' + 'Ember.Application.instanceInitializer(i);');
+    result.push('     } else {');
+    result.push('       ' + 'Ember.Application.initializer(i);');
+    result.push('     }});');
     result.push('}');
     i++;
   });
