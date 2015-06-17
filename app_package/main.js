@@ -13,7 +13,18 @@ function makeResolver(name) {
   });
 }
 
-var initializerSet = new Set();
+var executedInstanceInitializers = new Set();
+var executedInitializers = new Set();
+
+function executeInitializer(i) {
+  if (i.type === 'instance' && !executedInstanceInitializers.has(i.name)) {
+    Ember.Application.instanceInitializer(i);
+    executedInstanceInitializers.add(i.name);
+  } else if (i.type !== 'instance' && !executedInitializers.has(i.name)) {
+    Ember.Application.initializer(i);
+    executedInitializers.add(i.name);
+  }
+}
 
 //CONTROLLERS
 //NAMES
@@ -22,16 +33,7 @@ var initializerSet = new Set();
 //OTHER_COMPONENTS
 
 if (initializers instanceof Array) {
-  initializers.forEach((i) => {
-    if (!initializerSet.has(i.name)) {
-      if (i.type === 'instance') {
-        Ember.Application.instanceInitializer(i);
-      } else {
-        Ember.Application.initializer(i);
-      }
-      initializerSet.add(i.name);
-    }
-  });
+  initializers.forEach((i) => { executeInitializer(i) });
 }
 
 //TEMPLATES
