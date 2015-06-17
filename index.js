@@ -89,7 +89,7 @@ var filesToCopy = [
   'fonts/fontawesome-webfont.woff',
   'fonts/fontawesome-webfont.woff2',
   'vcl/index.styl',
-  'img/vclBusyIndicatorCircular.svg'
+  'imgs/vclBusyIndicatorCircular.svg'
 ];
 
 filesToCopy.forEach(function (f) {
