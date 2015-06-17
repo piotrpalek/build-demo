@@ -13,6 +13,8 @@ function makeResolver(name) {
   });
 }
 
+var initializerSet = new Set();
+
 //CONTROLLERS
 //NAMES
 //CURRENT_COMPONENT_IMPORT
@@ -21,10 +23,13 @@ function makeResolver(name) {
 
 if (initializers instanceof Array) {
   initializers.forEach((i) => {
-    if (i.type === 'instance') {
-      Ember.Application.instanceInitializer(i);
-    } else {
-      Ember.Application.initializer(i);
+    if (!initializerSet.has(i.name)) {
+      if (i.type === 'instance') {
+        Ember.Application.instanceInitializer(i);
+      } else {
+        Ember.Application.initializer(i);
+      }
+      initializerSet.add(i.name);
     }
   });
 }
