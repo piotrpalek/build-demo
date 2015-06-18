@@ -2,14 +2,23 @@ var gulp = require('gulp');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var shell = require('gulp-shell');
-var livereload = require('gulp-livereload');
+var connect = require('gulp-connect');
+var open = require('gulp-open');
 
 gulp.task('watch', function() {
-  livereload.listen(3333);
-  gulp.watch([
+  connect.server({
+    port:3333,
+    livereload: true
+  });
+  gulp.src('./index.html')
+    .pipe(open('', {
+      url: 'http://localhost:3333',
+    }));
+  return gulp.watch([
     './example*/**/*'
   ], function(file){
-    livereload(file);
+    return gulp.src(file.path)
+        .pipe(connect.reload());
   });
 });
 
@@ -38,5 +47,12 @@ gulp.task('fonts', function() {
 gulp.task('build', ['css', 'html', 'fonts', 'jspm']);
 
 gulp.task('serve-dist', function() {
-  livereload.listen({ basePath: './dist', port: 3333 });
+  connect.server({
+    root: './dist',
+    port: 3334
+  });
+  gulp.src('./index.html')
+    .pipe(open('', {
+      url: 'http://localhost:3334',
+    }));
 });
