@@ -1,21 +1,9 @@
 var gulp = require('gulp');
 var jspm = require('jspm');
-var runSequence = require('run-sequence');
-
 var rename = require('gulp-rename');
-var autoprefixer = require('gulp-autoprefixer');
-var vclPreprocessor = require('gulp-vcl-preprocessor');
 var concat = require('gulp-concat');
 
-gulp.task('vcl', function () {
-  return gulp.src('vcl/index.styl')
-    .pipe(vclPreprocessor())
-    .pipe(autoprefixer())
-    .pipe(concat('vcl.css'))
-    .pipe(gulp.dest('.'));
-})
-
-gulp.task('watch', ['vcl'], function() {
+gulp.task('watch', function() {
 
   var browserSync = require('browser-sync');
 
@@ -47,8 +35,8 @@ gulp.task('html', function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('css', ['vcl'], function() {
-  return gulp.src(['vcl.css', 'custom.css'])
+gulp.task('css', function() {
+  return gulp.src(['custom.css'])
     .pipe(gulp.dest('dist'));
 });
 
