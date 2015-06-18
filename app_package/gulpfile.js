@@ -1,31 +1,21 @@
 var gulp = require('gulp');
-var jspm = require('jspm');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
+var shell = require('gulp-shell');
+var livereload = require('gulp-livereload');
 
 gulp.task('watch', function() {
-
-  var browserSync = require('browser-sync');
-
-  browserSync({
-    online: false,
-    port: 3333,
-    server: {
-      baseDir: ['']
-    }
-  });
-
+  livereload.listen(3333);
   gulp.watch([
     './example*/**/*'
   ], function(file){
-    browserSync.reload(file.path);
+    livereload(file);
   });
-
 });
 
-gulp.task('jspm', function() {
-  return jspm.bundleSFX('main', 'dist/app.js', { sourceMaps: false, minify: true, mangle: true});
-});
+gulp.task('jspm', shell.task([
+  'jspm bundle-sfx main dist/app.js'
+]));
 
 gulp.task('html', function() {
   return gulp.src('*-production.html')
@@ -45,19 +35,8 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('dist/fonts'));
 });
 
-
 gulp.task('build', ['css', 'html', 'fonts', 'jspm']);
 
 gulp.task('serve-dist', function() {
-
-  var browserSync = require('browser-sync');
-
-  browserSync({
-    online: false,
-    port: 3333,
-    server: {
-      baseDir: ['./dist']
-    }
-  });
-
+  livereload.listen({ basePath: './dist', port: 3333 });
 });

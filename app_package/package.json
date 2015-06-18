@@ -8,11 +8,11 @@
     "url": ""
   },
   "devDependencies": {
-    "browser-sync": "^1.6.3",
     "gulp": "^3.8.11",
-    "jspm": "^0.15.1",
+    "gulp-concat": "^2.4.1",
+    "gulp-livereload": "^3.8.0",
     "gulp-rename": "^1.2.0",
-    "gulp-concat": "^2.4.1"
+    "gulp-shell": "^0.4.2"
   },
   "jspm": {
     "directories": {
