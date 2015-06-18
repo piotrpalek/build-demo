@@ -17,15 +17,12 @@
         font-style: normal;
       }
     </style>
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <script>
+      System.baseURL = '/';
+      System.import('main');
+    </script>
   </head>
-  <body class="vclViewport">
-    <div class="vclApp">
-      <script src="jspm_packages/system.js"></script>
-      <script src="config.js"></script>
-      <script>
-        System.baseURL = '/';
-        System.import('main');
-      </script>
-    </div>
-  </body>
+  <body></body>
 </html>
