@@ -27,10 +27,10 @@
       "lib": "."
     },
     "dependencies": {
-      "ember": "github:components/ember@1.13.1",
+      "ember": "github:components/ember@1.13.2",
       "ember-i18n": "github:jamesarosen/ember-i18n@^3.1.0",
       "gesture-event-support": "github:ember-vcl/gesture-event-support@^0.1.0",
-      "hbs": "github:n-fuse/plugin-ember-hbs@^1.13.1",
+      "hbs": "github:n-fuse/plugin-ember-hbs@^1.13.2",
       "jquery": "github:components/jquery@^2.1.3"
     },
     "devDependencies": {
@@ -39,7 +39,7 @@
       "core-js": "npm:core-js@^0.9.4"
     },
     "overrides": {
-      "github:components/ember@1.13.1": {
+      "github:components/ember@1.13.2": {
         "main": "ember.debug",
         "files": [
           "ember.debug.js"
