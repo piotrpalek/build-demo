@@ -5,6 +5,22 @@ It can be used for testing/development of an individual component.
 
 ## Usage
 
+### Requirements
+
+```
+npm install -g jspm gulp gulp-concat gulp-connect gulp-rename gulp-shell gulp-open
+```
+
+Make sure you have compatible/up-to-date version:
+
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.4.1",
+    "gulp-connect": "^2.2.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-shell": "^0.4.2",
+    "gulp-open": "^0.3.2"
+    "jspm": "^0.15.6"
+
 ### How to build a demo for a component
 
 1. Checkout the component

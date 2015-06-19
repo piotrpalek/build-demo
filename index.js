@@ -80,14 +80,7 @@ var filesToCopy = [
   'index-production.html',
   'gulpfile.js',
   'config.js!',
-  'gh-pages.sh',
-  'fonts/FontAwesome.otf',
-  'fonts/fontawesome-webfont.eot',
-  'fonts/fontawesome-webfont.svg',
-  'fonts/fontawesome-webfont.ttf',
-  'fonts/fontawesome-webfont.woff',
-  'fonts/fontawesome-webfont.woff2',
-  'imgs/vclBusyIndicatorCircular.svg'
+  'gh-pages.sh'
 ];
 
 filesToCopy.forEach(function (f) {
