@@ -26,6 +26,9 @@ function executeInitializer(i) {
   }
 }
 
+import faInit from 'ember-vcl-font-awesome';
+faInit.forEach((i) => { executeInitializer(i) });
+
 //CONTROLLERS
 //NAMES
 //CURRENT_COMPONENT_IMPORT
