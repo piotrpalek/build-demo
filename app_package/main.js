@@ -13,31 +13,13 @@ function makeResolver(name) {
   });
 }
 
-var executedInstanceInitializers = new Set();
-var executedInitializers = new Set();
-
-function executeInitializer(i) {
-  if (i.type === 'instance' && !executedInstanceInitializers.has(i.name)) {
-    Ember.Application.instanceInitializer(i);
-    executedInstanceInitializers.add(i.name);
-  } else if (i.type !== 'instance' && !executedInitializers.has(i.name)) {
-    Ember.Application.initializer(i);
-    executedInitializers.add(i.name);
-  }
-}
-
-import faInit from 'ember-vcl-font-awesome';
-faInit.forEach((i) => { executeInitializer(i) });
+import  'ember-vcl-font-awesome';
 
 //CONTROLLERS
 //NAMES
 //CURRENT_COMPONENT_IMPORT
 
 //OTHER_COMPONENTS
-
-if (initializers instanceof Array) {
-  initializers.forEach((i) => { executeInitializer(i) });
-}
 
 //TEMPLATES
 import EventsMixin from 'gesture-event-support';
