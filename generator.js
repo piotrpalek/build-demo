@@ -49,7 +49,7 @@ function components(dep) {
   var i = 1;
   Object.keys(dep).forEach(function (name) {
     var varName = 'dep' + i;
-    result.push('import from \'' + name + '\';\n');
+    result.push('import \'' + name + '\';\n');
     i++;
   });
   return result.join("\n");
