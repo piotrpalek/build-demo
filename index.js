@@ -60,7 +60,7 @@ mainjs = mainjs.replace('//OTHER_COMPONENTS', generator.components(dependencies)
 fs.writeFileSync('./tmp/main.js', mainjs);
 
 var packagejson = fs.readJSONSync('./tmp/package.json');
-packagejson.jspm.dependencies[componentName] = componentName.replace('ember-vcl-', 'github:ember-vcl/');
+packagejson.jspm.dependencies[componentName] = componentName.replace('ember-vcl-', 'github:ember-vcl/') + '@master';
 
 Object.keys(dependencies).forEach(function (key) {
   packagejson.jspm.dependencies[key] = dependencies[key];
