@@ -33,7 +33,7 @@ function templates(names) {
 }
 
 function component(componentName) {
-  return 'import initializers from \'' + componentName + '\';\n';
+  return 'import \'' + componentName + '\';\n';
 }
 
 function containers(names) {
@@ -49,10 +49,7 @@ function components(dep) {
   var i = 1;
   Object.keys(dep).forEach(function (name) {
     var varName = 'dep' + i;
-    result.push('import ' + varName + ' from \'' + name + '\';\n');
-    result.push('if (' + varName + ' instanceof Array) {');
-    result.push('  ' + varName + '.forEach((i) => { executeInitializer(i); });');
-    result.push('}');
+    result.push('import from \'' + name + '\';\n');
     i++;
   });
   return result.join("\n");
