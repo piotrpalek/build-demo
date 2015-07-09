@@ -25,11 +25,13 @@ import  'ember-vcl-font-awesome';
 import EventsMixin from 'gesture-event-support';
 
 //ROUTERS
+var AppClass = Ember.Application.extend(EventsMixin);
+
 names.forEach((name) => {
-  var App = Ember.Application.createWithMixins({
+  var App = AppClass.create({
     rootElement: '#' + name,
     Resolver: makeResolver(name)
-  }, EventsMixin);
+  });
   App.ApplicationController = controllers[name];
   if (routers[name]) {
     App.Router.map(routers[name]);
