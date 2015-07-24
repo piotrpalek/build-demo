@@ -1,6 +1,11 @@
 var fs = require('fs-extra');
 var generator = require('./generator');
 var target = process.argv[2]; // first param
+var edge = false;
+if (process.argv.length > 3) {
+  edge = process.argv[3];
+}
+
 var path = require('path');
 var fsn = require('fs');
 
@@ -74,7 +79,7 @@ fs.outputJSONSync('./tmp/package.json', packagejson);
 })
 
 var filesToCopy = [
-  'package.json',
+  'edge-package.json',
   'main.js',
   'index.html',
   'index-production.html',
@@ -97,6 +102,10 @@ filesToCopy.forEach(function (f) {
     fs.copySync('./tmp/' + f, target + 'tmp/' + f);
   }
 });
+
+if (edge) {
+  fs.copySync(target + 'tmp/edge-package.json', target + 'tmp/package.json');
+}
 
 names.forEach(function (name) {
   var src = path.resolve(target + 'demo/' + name);
