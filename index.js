@@ -2,6 +2,7 @@ var fs = require('fs-extra');
 var generator = require('./generator');
 var target = process.argv[2]; // first param
 var edge = false;
+
 if (process.argv.length > 3) {
   edge = process.argv[3];
 }
@@ -80,6 +81,7 @@ fs.outputJSONSync('./tmp/package.json', packagejson);
 
 var filesToCopy = [
   'edge-package.json',
+  'package.json',
   'main.js',
   'index.html',
   'index-production.html',
