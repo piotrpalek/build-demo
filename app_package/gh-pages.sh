@@ -8,4 +8,6 @@ cd ..
 
 git add gh-pages
 git commit -m 'GH-PAGES UPDATE'
-git subtree push --prefix gh-pages origin gh-pages
+git subtree split --prefix gh-pages -b gh-pages
+git push -f origin gh-pages:gh-pages
+git branch -D gh-pages
