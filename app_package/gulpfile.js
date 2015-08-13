@@ -11,8 +11,8 @@ gulp.task('watch', function() {
     livereload: true
   });
   gulp.src('./index.html')
-    .pipe(open('', {
-      url: 'http://localhost:3333',
+    .pipe(open({
+      uri: 'http://localhost:3333',
     }));
   return gulp.watch([
     './example*/**/*'
@@ -53,6 +53,6 @@ gulp.task('serve-dist', function() {
   });
   gulp.src('./index.html')
     .pipe(open({
-      uri: 'http://localhost:3333',
+      uri: 'http://localhost:3334',
     }));
 });
