@@ -53,6 +53,6 @@ gulp.task('serve-dist', function() {
   });
   gulp.src('./index.html')
     .pipe(open({
-      url: 'http://localhost:3334',
+      uri: 'http://localhost:3333',
     }));
 });
