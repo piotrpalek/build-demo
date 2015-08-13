@@ -52,7 +52,7 @@ gulp.task('serve-dist', function() {
     port: 3334
   });
   gulp.src('./index.html')
-    .pipe(open('', {
+    .pipe(open({
       url: 'http://localhost:3334',
     }));
 });
