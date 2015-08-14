@@ -24,7 +24,8 @@
       "github:components/ember@2.0.0": {
         "main": "ember.debug",
         "files": [
-          "ember.debug.js"
+          "ember.debug.js",
+          "ember-template-compiler.js"
         ],
         "dependencies": {
           "jquery": "github:components/jquery@^2.1.3"
