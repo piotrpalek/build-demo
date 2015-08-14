@@ -7,3 +7,4 @@ cd "${path}tmp"         # cd to tmp in there
 npm install             # npm
 npm link jspm gulp gulp-concat gulp-connect gulp-rename gulp-shell gulp-open
 jspm install            # install
+jspm dl-loader          # update loaders
