@@ -119,4 +119,14 @@ names.forEach(function (name) {
   }
 });
 
+if (fs.existsSync(target + 'test')) {
+  var src = path.resolve(target + 'test');
+  var dest = path.resolve(target + 'tmp/' + 'test');
+  console.log('Creating symlinks: ' + src + ' -> ' + dest);
+  try {
+    fs.symlinkSync(src, dest);
+  } catch (e) {
+  }
+}
+
 fs.removeSync('./tmp');
