@@ -21,9 +21,6 @@
       "ember-vcl-font-awesome": "github:ember-vcl/font-awesome@^0.1.0"
     },
     "devDependencies": {
-      "babel": "npm:babel-core@^5.1.13",
-      "babel-runtime": "npm:babel-runtime@^5.1.13",
-      "core-js": "npm:core-js@^0.9.4"
     },
     "overrides": {
       "github:components/ember@2.1.0-beta.4": {
