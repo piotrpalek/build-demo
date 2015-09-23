@@ -23,7 +23,7 @@
     "devDependencies": {
     },
     "overrides": {
-      "github:components/ember@2.0.0": {
+      "github:components/ember@2.1.0-beta.4": {
         "main": "ember.debug",
         "files": [
           "ember.debug.js",
