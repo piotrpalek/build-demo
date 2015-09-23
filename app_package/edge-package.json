@@ -14,7 +14,7 @@
     },
     "dependencies": {
       "ember": "github:components/ember@2.1.0-beta.4",
-      "ember-i18n": "github:jamesarosen/ember-i18n@^3.1.0",
+      "ember-i18n": "github:n-fuse/ember-i18n-fork@^3.1.2",
       "gesture-event-support": "github:ember-vcl/gesture-event-support@^0.1.0",
       "hbs": "github:n-fuse/plugin-ember-hbs@shim-free",
       "jquery": "github:components/jquery@^2.1.3",
