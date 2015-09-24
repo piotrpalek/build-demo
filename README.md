@@ -13,13 +13,13 @@ npm install -g jspm gulp gulp-concat gulp-connect gulp-rename gulp-shell gulp-op
 
 Make sure you have compatible/up-to-date version:
 
-    "gulp": "^3.8.11",
-    "gulp-concat": "^2.4.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.2.0",
     "gulp-rename": "^1.2.0",
-    "gulp-shell": "^0.4.2",
-    "gulp-open": "^0.3.2"
-    "jspm": "^0.15.6"
+    "gulp-shell": "^0.4.0",
+    "gulp-open": "^0.3.0"
+    "jspm": "^0.16.0"
 
 ### How to build a demo for a component
 
