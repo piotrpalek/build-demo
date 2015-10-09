@@ -21,6 +21,26 @@
       "ember-vcl-font-awesome": "github:ember-vcl/font-awesome@^0.1.0"
     },
     "overrides": {
+      "github:gf3/moment-range@2.0.3": {
+        "main": "moment-range",
+        "dependencies": {},
+        "directories": {
+          "lib": "dist"
+        }
+      },
+      "github:n-fuse/ember-i18n-fork@3.1.5": {
+        "shim": {
+          "lib/i18n": [
+            "ember",
+            "ember-template-compiler"
+          ]
+        },
+        "format": "amd",
+        "dependencies": {
+          "ember": "github:components/ember@2.0.2",
+          "ember-template-compiler": "github:n-fuse/ember-template-compiler@2.0.2"
+        }
+      },
       "github:components/ember@2.0.2": {
         "main": "ember.debug",
         "files": [
