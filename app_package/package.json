@@ -8,6 +8,7 @@
     "url": ""
   },
   "devDependencies": {},
+  "license": "MIT",
   "jspm": {
     "directories": {
       "lib": "."
