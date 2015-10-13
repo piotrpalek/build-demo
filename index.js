@@ -73,15 +73,13 @@ Object.keys(dependencies).forEach(function (key) {
 });
 fs.outputJSONSync('./tmp/package.json', packagejson);
 
-['./tmp/index.html'].forEach(function (name) {
-  var indexhtml = fs.readFileSync(name, 'utf-8');
-  names.forEach(function (exampleName) {
-    var exampleIndexHtml = indexhtml
-      .replace('</body>', generator.containerFor(exampleName) + '\n</body>')
-      .replace('CURRENT_NAME', exampleName);
-    fs.writeFileSync('./tmp/' + exampleName + '.html', exampleIndexHtml);
-  });
-})
+var indexhtml = fs.readFileSync('./tmp/index.html', 'utf-8');
+names.forEach(function (exampleName) {
+  var exampleIndexHtml = indexhtml
+    .replace('</body>', generator.containerFor(exampleName) + '\n</body>')
+    .replace('CURRENT_NAME', exampleName);
+  fs.writeFileSync('./tmp/' + exampleName + '.html', exampleIndexHtml);
+});
 
 var filesToCopy = [
   'edge-package.json',
