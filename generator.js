@@ -45,7 +45,7 @@ function containers(names) {
 }
 
 function containerFor(name) {
-  return '<div id="' + name + '"></div>');
+  return '<div id="' + name + '"></div>';
 }
 
 function components(dep) {
