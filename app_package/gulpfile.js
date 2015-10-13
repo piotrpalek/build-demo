@@ -23,14 +23,11 @@ gulp.task('watch', function() {
 });
 
 gulp.task('jspm', shell.task([
-  'jspm bundle main dist/app.js'
+  'cp -r jspm_packages dist/jspm_packages; cp config.js dist/config.js; jspm bundle main dist/app.js --skip-source-maps --inject --minify'
 ]));
 
 gulp.task('html', function() {
-  return gulp.src('*-production.html')
-    .pipe(rename(function(path) {
-      path.basename = path.basename.slice(0, -11); // remove -production
-    }))
+  return gulp.src('*.html')
     .pipe(gulp.dest('dist'));
 });
 

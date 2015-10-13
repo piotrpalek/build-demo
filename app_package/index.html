@@ -18,17 +18,16 @@
         var EventsMixin = main.default.EventsMixin;
         var routers = main.default.routers;
 
-        names.forEach(function (name){
-          var AppClass = Ember.Application.extend({
-            rootElement: '#' + name,
-            Resolver: makeResolver(name)
-          }, EventsMixin);
-          var App = AppClass.create();
-          App.ApplicationController = controllers[name];
-          if (routers[name]) {
-            App.Router.map(routers[name]);
-          }
-        });
+        var name = 'CURRENT_NAME';
+        var AppClass = Ember.Application.extend({
+          rootElement: '#' + name,
+          Resolver: makeResolver(name)
+        }, EventsMixin);
+        var App = AppClass.create();
+        App.ApplicationController = controllers[name];
+        if (routers[name]) {
+          App.Router.map(routers[name]);
+        }
       });
     </script>
   </head>

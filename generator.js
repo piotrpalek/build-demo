@@ -44,6 +44,10 @@ function containers(names) {
   return result.join("\n");
 }
 
+function containerFor(name) {
+  return '<div id="' + name + '"></div>');
+}
+
 function components(dep) {
   var result = [];
   var i = 1;

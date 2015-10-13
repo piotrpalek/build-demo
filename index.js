@@ -73,18 +73,20 @@ Object.keys(dependencies).forEach(function (key) {
 });
 fs.outputJSONSync('./tmp/package.json', packagejson);
 
-['./tmp/index.html', './tmp/index-production.html'].forEach(function (name) {
+['./tmp/index.html'].forEach(function (name) {
   var indexhtml = fs.readFileSync(name, 'utf-8');
-  indexhtml = indexhtml.replace('</body>', generator.containers(names) + '\n</body>');
-  fs.writeFileSync(name, indexhtml);
+  exampleName.forEach(function (exampleName) {
+    var exampleIndexHtml = indexhtml
+      .replace('</body>', generator.containerFor(exampleName) + '\n</body>')
+      .replace('CURRENT_NAME', exampleName);
+    fs.writeFileSync('./tmp/' + exampleName + '.html', exampleIndexHtml);
+  });
 })
 
 var filesToCopy = [
   'edge-package.json',
   'package.json',
   'main.js',
-  'index.html',
-  'index-production.html',
   'gulpfile.js',
   'config.js!',
   'gh-pages.sh'
