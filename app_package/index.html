@@ -14,6 +14,10 @@
       System.import('main').then(function(main) {
         var names = main.default.names;
         var makeResolver = main.default.makeResolver;
+        var controllers = main.default.controllers;
+        var EventsMixin = main.default.EventsMixin;
+        var routers = main.default.routers;
+
         names.forEach(function (name){
           var AppClass = Ember.Application.extend({
             rootElement: '#' + name,
