@@ -22,7 +22,8 @@
     }
   ],
   "dependencies": {
-    "fs-extra": "^0.16.3"
+    "fs-extra": "^0.16.3",
+    "recast": "^0.10.33"
   },
   "keywords": [
     "web-component",
