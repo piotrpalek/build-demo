@@ -26,14 +26,4 @@ import EventsMixin from 'gesture-event-support';
 
 //ROUTERS
 
-names.forEach((name) => {
-  var AppClass = Ember.Application.extend({
-    rootElement: '#' + name,
-    Resolver: makeResolver(name)
-  }, EventsMixin);
-  var App = AppClass.create();
-  App.ApplicationController = controllers[name];
-  if (routers[name]) {
-    App.Router.map(routers[name]);
-  }
-});
+export default names;
