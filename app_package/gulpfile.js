@@ -23,7 +23,11 @@ gulp.task('watch', function() {
 });
 
 gulp.task('jspm', shell.task([
-  'jspm unbundle; jspm bundle main app.js --skip-source-maps --inject --minify; cp app.js dist/app.js; cp -r jspm_packages dist/jspm_packages; cp config.js dist/config.js; '
+  'jspm unbundle',
+  'jspm bundle main app.js --skip-source-maps --inject --minify',
+  'cp app.js dist/app.js',
+  'cp -r jspm_packages dist/jspm_packages',
+  'cp config.js dist/config.js'
 ]));
 
 gulp.task('html', function() {
