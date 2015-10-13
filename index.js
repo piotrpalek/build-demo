@@ -90,6 +90,10 @@ var filesToCopy = [
   'gh-pages.sh'
 ];
 
+names.forEach(function (exampleName) {
+  filesToCopy.push(exampleName+'.html');
+});
+
 filesToCopy.forEach(function (f) {
   var copy = true;
   if (f[f.length - 1] === '!') {
