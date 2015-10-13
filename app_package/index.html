@@ -11,8 +11,9 @@
     <script src="config.js"></script>
     <script>
       System.baseURL = '/';
-      System.import('main').then(function(names) {
-        names.forEach((name) => {
+      System.import('main').then(function(main) {
+        var names = main.default;
+        names.forEach(function (name){
           var AppClass = Ember.Application.extend({
             rootElement: '#' + name,
             Resolver: makeResolver(name)
