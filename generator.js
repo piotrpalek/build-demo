@@ -80,5 +80,6 @@ module.exports = {
   component: component,
   containers: containers,
   components: components,
-  routers: routers
+  routers: routers,
+  containerFor: containerFor
 }
