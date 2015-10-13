@@ -26,4 +26,4 @@ import EventsMixin from 'gesture-event-support';
 
 //ROUTERS
 
-export default names;
+export default { names, makeResolver);
