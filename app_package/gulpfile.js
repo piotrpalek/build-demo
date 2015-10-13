@@ -23,7 +23,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('jspm', shell.task([
-  'jspm bundle-sfx main dist/app.js'
+  'jspm bundle main dist/app.js'
 ]));
 
 gulp.task('html', function() {
