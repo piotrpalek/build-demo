@@ -87,8 +87,15 @@ var filesToCopy = [
   'main.js',
   'gulpfile.js',
   'config.js!',
-  'gh-pages.sh'
+  'gh-pages.sh',
+  "index.html"
 ];
+
+var links = names.map(function(n) {
+  return '<a href="' + n + '.html' + '">' + n + '</a>'
+});
+
+fs.writeFileSync('./tmp/index.html', '<html><body> ' + links.join('<br>') + '</body></html>');
 
 names.forEach(function (exampleName) {
   filesToCopy.push(exampleName+'.html');
