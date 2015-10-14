@@ -99,7 +99,7 @@ recast.visit(ast, {
     var callee = path.value.callee;
     var pNode = path.parent;
     // Ember.Smth.extend or Ember.Smth.create
-    if (['extend', 'create'].indexOf(callee.property.name) !== -1) {
+    if (callee.property && ['extend', 'create'].indexOf(callee.property.name) !== -1) {
       // Ember.Smth.extend or Ember.Smth.create are top level
       // parent|parent|pNode
       if (pNode.parent.parent.node.type === 'Program') {
@@ -174,6 +174,13 @@ if (blockComments.length === 0) {
         return '';
       }
     } else {
+      if (trimmed[0] == '*') {
+        var i = 0;
+        while (line[i] !== '*') {
+          i++;
+        }
+        line = line.substr(0, i) + ' ' + line.substr(i + 1);
+      }
       return line;
     }
   })
@@ -203,7 +210,8 @@ if (blockComments.length === 0) {
   })).join('\n');
 
   var name = capitalizeFirstLetter(pkg.name.replace('ember-vcl-', ''));
-  var readme = ['# [Ember VCL](https://github.com/ember-vcl/doc) ' + name,
+  var processedName = name.split('-').map(capitalizeFirstLetter).join(' ');
+  var readme = ['# [Ember VCL](https://github.com/ember-vcl/doc) ' + processedName,
   '',
   result,
   '',
