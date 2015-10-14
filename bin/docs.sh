@@ -56,7 +56,7 @@ function getDescription(comment) {
   var lines = comment.split('\n');
   var result = lines.filter(function(line) {
     var trimmed = line.trim();
-    if (trimmed[0] == '@') {
+    if (trimmed[0] == '@' || trimmed == '*') {
       return false;
     }
     return true;
@@ -84,6 +84,7 @@ function detect(property) {
 
 var util = require('util');
 // console.log(util.inspect(ast, { showHidden: false, depth: null }));
+var mixins = [];
 
 recast.visit(ast, {
   visitComment: function(path) {
@@ -96,23 +97,33 @@ recast.visit(ast, {
   visitCallExpression: function(path) {
     this.traverse(path);
     var callee = path.value.callee;
-    if (callee.property.name === 'extend') {
-      var arguments = callee.arguments;
-      var obj = path.value.arguments[path.value.arguments.length - 1];
-      recast.visit(obj, {
-        visitProperty: function(path) {
-          this.traverse(path);
-          if (path.parent.value === obj) {
-            attributeComments.push(detect({
-              name: path.value.key.name,
-              comments: path.value.comments,
-              defaultValue: path.value.value.raw ? path.value.value.raw : path.value.type
-            }));
+    var pNode = path.parent;
+    // Ember.Smth.extend or Ember.Smth.create
+    if (['extend', 'create'].indexOf(callee.property.name) !== -1) {
+      // Ember.Smth.extend or Ember.Smth.create are top level
+      // parent|parent|pNode
+      if (pNode.parent.parent.node.type === 'Program') {
+        var arguments = path.value.arguments;
+        if (arguments.length > 1) {
+          for (var i = 0; i < arguments.length - 1; i++) {
+            mixins.push(arguments[i].name);
           }
         }
-      });
+        var obj = arguments[arguments.length - 1];
+        recast.visit(obj, {
+          visitProperty: function(path) {
+            this.traverse(path);
+            if (path.parent.value === obj) {
+              attributeComments.push(detect({
+                name: path.value.key.name,
+                comments: path.value.comments,
+                defaultValue: path.value.value.raw ? path.value.value.raw : path.value.type
+              }));
+            }
+          }
+        });
+      }
     }
-    // console.log(path.value.body.body)
   }
 });
 
@@ -146,7 +157,7 @@ if (blockComments.length === 0) {
         return '[' + spl[1] + '](/demo/' + spl[1] + '/)';
       } else if (line.substring(0, '@property'.length) == '@property') {
         spl = trimmed.split('    ').filter(function(item) {
-          if (item.trim() == '') {
+          if (item.trim() == '' || item.trim() == '*') {
             return false;
           }
           return true;
@@ -155,10 +166,10 @@ if (blockComments.length === 0) {
         result = '';
         spl.shift();
         publicAttributes.push({
-          name: spl[0],
-          valueType: spl[1],
-          defaultValue: spl[2],
-          description: spl[3]
+          name: spl[1],
+          valueType: spl[0],
+          defaultValue: 'N/A',
+          description: spl[2]
         })
         return '';
       }
@@ -178,6 +189,10 @@ if (blockComments.length === 0) {
   .concat(['| ---- | ---- | ------- | ----------- |'])
   .concat(actionAttributes.map(function(p) {
     return ['|' + p.name, p.valueType, '`'+p.defaultValue+'`', p.description + '|'].join('|')
+  }))
+  .concat(['## Included Mixins'])
+  .concat(mixins.map(function(p) {
+    return [' - ' + p];
   }))
   var result = processedLines.join('\n');
   var privateResult = ['## Private API'].concat(['### Private Attributes'])
