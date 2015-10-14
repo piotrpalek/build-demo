@@ -1,8 +1,10 @@
 import 'jquery';
 import Ember from 'ember';
 
-import 'ember-i18n';
-Ember.I18n.I18N_COMPILE_WITHOUT_HANDLEBARS = true;
+import * as Utils from 'ember-utils';
+import L10nService from 'l10n';
+
+Utils.registerService('l10n', L10nService);
 
 function makeResolver(name) {
   return Ember.DefaultResolver.extend({
