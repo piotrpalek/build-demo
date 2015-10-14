@@ -103,9 +103,6 @@ recast.visit(ast, {
         visitProperty: function(path) {
           this.traverse(path);
           if (path.parent.value === obj) {
-            if (path.value.key.name == 'layout') {
-              console.log(path.value);
-            }
             attributeComments.push(detect({
               name: path.value.key.name,
               comments: path.value.comments,
