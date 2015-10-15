@@ -40,7 +40,7 @@ function getValueType(property) {
   var comment = property.comments || '';
   var found = comment.match(re);
   if (found && found.length > 0) {
-    return '{' + capitalizeFirstLetter(found[0]) + '}';
+    return '{' + capitalizeFirstLetter(found[1]) + '}';
   }
   var t = 'undefined';
   try {
@@ -53,10 +53,10 @@ function getValueType(property) {
 
 
 function getDescription(comment) {
-  var lines = comment.split('\n');
+  var lines = comment.trimLeft().split('\n');
   var result = lines.filter(function(line) {
     var trimmed = line.trim();
-    if (trimmed[0] == '@' || trimmed == '*') {
+    if (trimmed[0] === '@' || trimmed === '*') {
       return false;
     }
     return true;
@@ -154,26 +154,25 @@ if (blockComments.length === 0) {
   var processedLines = lines.map(function(line) {
     var trimmed = removeStar(line.trim()).trim();
     var spl;
-    if (trimmed[0] == '@') {
-      if (trimmed.substring(0, '@demo'.length) == '@demo') {
+    if (trimmed[0] === '@') {
+      if (trimmed.substring(0, '@demo'.length) === '@demo') {
         // embed example link
         spl = trimmed.split(' ');
         return '[' + spl[1] + '](/demo/' + spl[1] + '/)';
-      } else if (trimmed.substring(0, '@property'.length) == '@property') {
+      } else if (trimmed.substring(0, '@property'.length) === '@property') {
         spl = trimmed.split('    ').filter(function(item) {
-          if (item.trim() == '' || item.trim() == '*') {
+          if (item.trim() === '' || item.trim() === '*') {
             return false;
           }
           return true;
         });
 
-        result = '';
         spl.shift();
         publicAttributes.push({
           name: spl[1],
           valueType: spl[0],
           defaultValue: 'N/A',
-          description: spl[2]
+          description: spl[2].trimLeft()
         })
         return '';
       }
