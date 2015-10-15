@@ -103,7 +103,7 @@ recast.visit(ast, {
     var callee = path.value.callee;
     var pNode = path.parent;
     // Ember.Smth.extend or Ember.Smth.create
-    if (['extend', 'create'].indexOf(callee.property.name) !== -1) {
+    if (callee.property && ['extend', 'create'].indexOf(callee.property.name) !== -1) {
       // Ember.Smth.extend or Ember.Smth.create are top level
       // parent|parent|pNode
       if (pNode.parent.parent.node.type === 'Program') {
