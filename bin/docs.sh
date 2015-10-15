@@ -206,7 +206,8 @@ if (blockComments.length === 0) {
   })).join('\n');
 
   var name = capitalizeFirstLetter(pkg.name.replace('ember-vcl-', ''));
-  var readme = ['# [Ember VCL](https://github.com/ember-vcl/doc) ' + name,
+  var processedName = name.split('-').map(capitalizeFirstLetter).join(' ');
+  var readme = ['# [Ember VCL](https://github.com/ember-vcl/doc) ' + processedName,
   '',
   result,
   '',
