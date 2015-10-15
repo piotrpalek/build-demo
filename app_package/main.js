@@ -2,9 +2,12 @@ import 'jquery';
 import Ember from 'ember';
 
 import * as Utils from 'ember-utils';
-import L10nService from 'l10n';
 
+import L10nService from 'l10n';
 Utils.registerService('l10n', L10nService);
+
+import RouterService from 'router';
+Utils.registerService('router', RouterService);
 
 function makeResolver(name) {
   return Ember.DefaultResolver.extend({
