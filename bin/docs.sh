@@ -4,13 +4,12 @@ var fs = require('fs');
 var recast = require('recast');
 var builders = recast.types.builders;
 var types = recast.types.namedTypes;
-var babelCore = require('babel-core');
 
 var pkg = require(process.cwd() + '/package.json');
 var main = pkg.main;
 
 var mainFile = fs.readFileSync('./' + main, 'utf-8');
-var ast = recast.parse(mainFile, {esprima: babelCore});
+var ast = recast.parse(mainFile);
 
 var blockComments = [];
 var attributeComments = [];
@@ -65,12 +64,16 @@ function getDescription(comment) {
   return result.join('<br>');
 }
 
+function removeStar(str) {
+  return str.replace(/^\s*?\*/gi, '');
+}
+
 function detect(property) {
   property.public = false;
   if (property.comments) {
     property.comments = property.comments.map(function(commentObj) {
       return commentObj.value;
-    }).join('\n');
+    }).map(removeStar).join('\n');
     property.public = isPublic(property.comments);
     property.type = getType(property.comments);
     property.description = getDescription(property.comments)
@@ -90,7 +93,7 @@ var mixins = [];
 recast.visit(ast, {
   visitComment: function(path) {
     this.traverse(path);
-    if (types.CommentBlock.check(path.value)
+    if (types.Block.check(path.value)
       && path.parent.node.type == 'Program') {
       blockComments.push(path.value);
     }
@@ -100,17 +103,17 @@ recast.visit(ast, {
     var callee = path.value.callee;
     var pNode = path.parent;
     // Ember.Smth.extend or Ember.Smth.create
-    if (callee.property && ['extend', 'create'].indexOf(callee.property.name) !== -1) {
+    if (['extend', 'create'].indexOf(callee.property.name) !== -1) {
       // Ember.Smth.extend or Ember.Smth.create are top level
       // parent|parent|pNode
       if (pNode.parent.parent.node.type === 'Program') {
-        var arguments = path.value.arguments;
-        if (arguments.length > 1) {
-          for (var i = 0; i < arguments.length - 1; i++) {
-            mixins.push(arguments[i].name);
+        var args = path.value.arguments;
+        if (args.length > 1) {
+          for (var i = 0; i < args.length - 1; i++) {
+            mixins.push(args[i].name);
           }
         }
-        var obj = arguments[arguments.length - 1];
+        var obj = args[args.length - 1];
         recast.visit(obj, {
           visitProperty: function(path) {
             this.traverse(path);
@@ -149,14 +152,14 @@ if (blockComments.length === 0) {
   var comment = blockComments[0].value;
   var lines = comment.split('\n');
   var processedLines = lines.map(function(line) {
-    var trimmed = line.trim();
+    var trimmed = removeStar(line.trim()).trim();
     var spl;
-    if (line[0] == '@') {
-      if (line.substring(0, '@demo'.length) == '@demo') {
+    if (trimmed[0] == '@') {
+      if (trimmed.substring(0, '@demo'.length) == '@demo') {
         // embed example link
         spl = trimmed.split(' ');
         return '[' + spl[1] + '](/demo/' + spl[1] + '/)';
-      } else if (line.substring(0, '@property'.length) == '@property') {
+      } else if (trimmed.substring(0, '@property'.length) == '@property') {
         spl = trimmed.split('    ').filter(function(item) {
           if (item.trim() == '' || item.trim() == '*') {
             return false;
@@ -175,14 +178,7 @@ if (blockComments.length === 0) {
         return '';
       }
     } else {
-      if (trimmed[0] == '*') {
-        var i = 0;
-        while (line[i] !== '*') {
-          i++;
-        }
-        line = line.substr(0, i) + ' ' + line.substr(i + 1);
-      }
-      return line;
+      return removeStar(line);
     }
   })
   .concat(['## Public API'])
@@ -211,8 +207,7 @@ if (blockComments.length === 0) {
   })).join('\n');
 
   var name = capitalizeFirstLetter(pkg.name.replace('ember-vcl-', ''));
-  var processedName = name.split('-').map(capitalizeFirstLetter).join(' ');
-  var readme = ['# [Ember VCL](https://github.com/ember-vcl/doc) ' + processedName,
+  var readme = ['# [Ember VCL](https://github.com/ember-vcl/doc) ' + name,
   '',
   result,
   '',
