@@ -16,6 +16,7 @@
     "dependencies": {
       "ember": "github:components/ember@2.0.2",
       "l10n": "github:restore-commerce/l10n@^0.1.0",
+      "router": "github:restore-commerce/router@^0.1.0",
       "ember-utils": "github:n-fuse/ember-utils@^0.3.0",
       "gesture-event-support": "github:ember-vcl/gesture-event-support@^0.1.0",
       "hbs": "github:n-fuse/plugin-ember-hbs@2.0.2",
