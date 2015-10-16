@@ -4,12 +4,13 @@ var fs = require('fs');
 var recast = require('recast');
 var builders = recast.types.builders;
 var types = recast.types.namedTypes;
+var babelCore = require('babel-core');
 
 var pkg = require(process.cwd() + '/package.json');
 var main = pkg.main;
 
 var mainFile = fs.readFileSync('./' + main, 'utf-8');
-var ast = recast.parse(mainFile);
+var ast = recast.parse(mainFile, {esprima: babelCore});
 
 var blockComments = [];
 var attributeComments = [];
