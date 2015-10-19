@@ -94,8 +94,8 @@ var mixins = [];
 recast.visit(ast, {
   visitComment: function(path) {
     this.traverse(path);
-    if (types.Block.check(path.value)
-      && path.parent.node.type == 'Program') {
+    if (path.value.type === 'CommentBlock'
+      && path.parent.node.type === 'Program') {
       blockComments.push(path.value);
     }
   },
