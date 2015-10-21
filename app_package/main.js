@@ -31,4 +31,7 @@ import EventsMixin from 'gesture-event-support';
 
 //ROUTERS
 
-export default { names, makeResolver, controllers, EventsMixin, routers};
+var translations = //TRANSLATIONS
+;
+
+export default { names, makeResolver, controllers, EventsMixin, routers, translations, Ember};

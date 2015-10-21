@@ -17,6 +17,8 @@
         var controllers = main.default.controllers;
         var EventsMixin = main.default.EventsMixin;
         var routers = main.default.routers;
+        var translations = main.default.translations;
+        var Ember = main.default.Ember;
 
         var name = 'CURRENT_NAME';
         var AppClass = Ember.Application.extend({
@@ -24,6 +26,12 @@
           Resolver: makeResolver(name)
         }, EventsMixin);
         var App = AppClass.create();
+        App.ApplicationRoute = Ember.Route.extend({
+          l10n: Ember.inject.service('l10n'),
+          beforeModel: function() {
+            this.get('l10n').setTexts(translations);
+          }
+        });
         App.ApplicationController = controllers[name];
         if (routers[name]) {
           App.Router.map(routers[name]);
