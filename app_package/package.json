@@ -24,6 +24,11 @@
       "ember-vcl-font-awesome": "github:ember-vcl/font-awesome@^0.1.0"
     },
     "overrides": {
+      "npm:tv4-formats@1.0.2": {
+        "map": {
+          "validator-js": "@empty"
+        }
+      },
       "github:gf3/moment-range@2.0.3": {
         "main": "moment-range",
         "dependencies": {},
