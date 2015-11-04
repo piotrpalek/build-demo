@@ -4,6 +4,7 @@ path=${2:-"../../"}     # path is the target folder. By default it's ../../
 
 if [ -d "${path}demo" ]; then
   # Control will enter here if project/demo exists.
+  npm link rstc-translations fs-extra
   node ./index "$path" "$@"    # running against the folder containing node_modules/build-demo
   cd "${path}tmp"         # cd to tmp in there
   npm install             # npm
