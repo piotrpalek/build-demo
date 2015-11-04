@@ -1,5 +1,6 @@
 import 'jquery';
 import Ember from 'ember';
+import { ServiceName as L10nServiceName } from 'l10n';
 
 function makeResolver(name) {
   return Ember.DefaultResolver.extend({
@@ -26,4 +27,4 @@ import EventsMixin from 'gesture-event-support';
 var translations = //TRANSLATIONS
 ;
 
-export default { names, makeResolver, controllers, EventsMixin, routers, translations, Ember};
+export default { names, makeResolver, controllers, EventsMixin, routers, translations, Ember, L10nServiceName};
