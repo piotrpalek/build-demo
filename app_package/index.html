@@ -19,6 +19,7 @@
         var routers = main.default.routers;
         var translations = main.default.translations;
         var Ember = main.default.Ember;
+        var L10nServiceName = main.default.L10nServiceName;
 
         var name = 'CURRENT_NAME';
         var AppClass = Ember.Application.extend({
@@ -27,7 +28,7 @@
         }, EventsMixin);
         var App = AppClass.create();
         App.ApplicationRoute = Ember.Route.extend({
-          l10n: Ember.inject.service('l10n'),
+          l10n: Ember.inject.service(L10nServiceName),
           beforeModel: function() {
             this.get('l10n').setTexts(translations);
           }
