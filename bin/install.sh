@@ -7,7 +7,7 @@ if [ -d "${path}demo" ]; then
   node ./index "$path" "$@"    # running against the folder containing node_modules/build-demo
   cd "${path}tmp"         # cd to tmp in there
   npm install             # npm
-  npm link jspm gulp gulp-concat gulp-connect gulp-rename gulp-shell gulp-open recast babel-corerecast@^0.10.33 rstc-translations fs-extra
+  npm link jspm gulp gulp-concat gulp-connect gulp-rename gulp-shell gulp-open babel-core recast rstc-translations fs-extra
   jspm install            # install
   jspm dl-loader          # update loaders
 fi
