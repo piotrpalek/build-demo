@@ -8,7 +8,7 @@ It can be used for testing/development of an individual component.
 ### Requirements
 
 ```
-npm install -g jspm gulp gulp-concat gulp-connect gulp-rename gulp-shell gulp-open
+npm install -g jspm gulp gulp-concat gulp-connect gulp-rename gulp-shell gulp-open recast babel-core@^5.8.25 recast@^0.10.33 restore-commerce/translations fs-extra
 ```
 
 Make sure you have compatible/up-to-date version:
@@ -20,6 +20,10 @@ Make sure you have compatible/up-to-date version:
     "gulp-shell": "^0.4.0",
     "gulp-open": "^0.3.0"
     "jspm": "^0.16.0"
+    "babel-core": "^5.8.25",
+    "fs-extra": "^0.16.3",
+    "recast": "^0.10.33",
+    "rstc-translations": "restore-commerce/translations"
 
 ### How to build a demo for a component
 
