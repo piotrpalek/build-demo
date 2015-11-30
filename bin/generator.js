@@ -1,15 +1,20 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var appRoot = path.resolve(__dirname) + '/../';
+var tmp = require('tmp');
 var fs = require('fs-extra');
-var generator = require('./generator');
 var rstcTranslations = require('rstc-translations');
+var path = require('path');
+var fsn = require('fs');
+var rimraf = require('rimraf');
+var generator = require('../lib/code-generator');
+
 var target = process.argv[2]; // first param
 var edge = false;
-
 if (process.argv.length > 3) {
   edge = process.argv[3];
 }
-
-var path = require('path');
-var fsn = require('fs');
 
 if (!target) {
   console.log('Target is not defined');
@@ -20,20 +25,16 @@ if (target[target.length - 1] !== '/') {
   target += '/';
 }
 
-// fs.removeSync(target + 'tmp/');
-fs.ensureDirSync(target + 'tmp/');
-
+var tmpDir = tmp.dirSync();
+var tmpDirName = tmpDir.name;
 var names = fs.readdirSync(target + 'demo');
 var componentName = 'ember-vcl-' + path.basename(path.resolve(target));
 
-console.log("Found the following demos: ", names);
-console.log("Component name: ", componentName);
+console.log('Found the following demos: ', names);
+console.log('Component name: ', componentName);
 
-fs.removeSync('./tmp');
-fs.ensureDirSync('./tmp');
-fs.copySync('./app_package', './tmp');
-
-var mainjs = fs.readFileSync('./tmp/main.js', 'utf-8');
+fs.copySync(appRoot + './app_package', tmpDirName);
+var mainjs = fs.readFileSync(tmpDirName + '/main.js', 'utf-8');
 
 rstcTranslations.toJSON({
   src: './'
@@ -68,22 +69,22 @@ rstcTranslations.toJSON({
 
   mainjs = mainjs.replace('//OTHER_COMPONENTS', generator.components(dependencies));
 
-  fs.writeFileSync('./tmp/main.js', mainjs);
+  fs.writeFileSync(tmpDirName + '/main.js', mainjs);
 
-  var packagejson = fs.readJSONSync('./tmp/package.json');
+  var packagejson = fs.readJSONSync(tmpDirName + '/package.json');
   packagejson.jspm.dependencies[componentName] = componentName.replace('ember-vcl-', 'github:ember-vcl/') + '@master';
 
   Object.keys(dependencies).forEach(function (key) {
     packagejson.jspm.dependencies[key] = dependencies[key];
   });
-  fs.outputJSONSync('./tmp/package.json', packagejson);
+  fs.outputJSONSync(tmpDirName + '/package.json', packagejson);
 
-  var indexhtml = fs.readFileSync('./tmp/index.html', 'utf-8');
+  var indexhtml = fs.readFileSync(tmpDirName + '/index.html', 'utf-8');
   names.forEach(function (exampleName) {
     var exampleIndexHtml = indexhtml
       .replace('</body>', generator.containerFor(exampleName) + '\n</body>')
       .replace('CURRENT_NAME', exampleName);
-    fs.writeFileSync('./tmp/' + exampleName + '.html', exampleIndexHtml);
+    fs.writeFileSync(tmpDirName + '/' + exampleName + '.html', exampleIndexHtml);
   });
 
   var filesToCopy = [
@@ -93,14 +94,14 @@ rstcTranslations.toJSON({
     'gulpfile.js',
     'config.js!',
     'gh-pages.sh',
-    "index.html"
+    'index.html'
   ];
 
   var links = names.map(function(n) {
-    return '<a href="' + n + '.html' + '">' + n + '</a>'
+    return `<a href="${n}.html">${n}</a>`;
   });
 
-  fs.writeFileSync('./tmp/index.html', '<html><body> ' + links.join('<br>') + '</body></html>');
+  fs.writeFileSync(tmpDirName + '/index.html', '<html><body> ' + links.join('<br>') + '</body></html>');
 
   names.forEach(function (exampleName) {
     filesToCopy.push(exampleName+'.html');
@@ -117,12 +118,12 @@ rstcTranslations.toJSON({
     }
     if (copy) {
       console.log('Copying ' + f + ' to the folder ' + componentName + '/tmp' );
-      fs.copySync('./tmp/' + f, target + 'tmp/' + f);
+      fs.copySync(tmpDirName + '/' + f, target + 'tmp/' + f);
     }
   });
 
   if (edge) {
-    fs.copySync(target + 'tmp/edge-package.json', target + 'tmp/package.json');
+    fs.copySync(tmpDirName + '/edge-package.json', target + 'tmp/package.json');
   }
 
   names.forEach(function (name) {
@@ -131,8 +132,7 @@ rstcTranslations.toJSON({
     console.log('Creating symlinks: ' + src + ' -> ' + dest);
     try {
       fs.symlinkSync(src, dest);
-    } catch (e) {
-    }
+    } catch (e) {}
   });
 
   if (fs.existsSync(target + 'test')) {
@@ -145,6 +145,7 @@ rstcTranslations.toJSON({
     }
   }
 
-  fs.removeSync('./tmp');
+  rimraf.sync(tmpDirName);
 });
+
 

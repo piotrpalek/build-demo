@@ -1,12 +1,10 @@
 {
   "name": "ember-vcl-build-demo",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/code-generator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "./bin/install.sh",
-    "install-edge": "./bin/install.sh --edge"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -21,7 +19,19 @@
       "email": "thomas.hoppe@n-fuse.de"
     }
   ],
+  "bin": {
+    "evcl": "./bin/evcl.sh",
+    "evcl-docs": "./bin/docs.sh",
+    "evcl-demo": "./bin/demo.sh",
+    "evcl-demo-generator": "./bin/generator.js"
+  },
   "dependencies": {
+    "babel-core": "^5.8.34",
+    "ember-vcl-demo": "file:tmp",
+    "fs-extra": "^0.26.2",
+    "recast": "^0.10.39",
+    "rimraf": "^2.4.4",
+    "rstc-translations": "github:restore-commerce/translations"
   },
   "keywords": [
     "web-component",
