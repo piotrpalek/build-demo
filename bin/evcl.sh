@@ -19,7 +19,7 @@ case "$CMD" in
     esac
     ;;
 "run")
-  gulp --gulpfile tmp/gulpfile.js
+  gulp --gulpfile tmp/gulpfile.js watch
   ;;
 *)
   echo "evcl build docs || evcl build demo"
